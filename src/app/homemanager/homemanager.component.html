@@ -25,8 +25,7 @@
     'active' : active3}" (click)="assignActive('active3')">Items</a>
   <a [ngClass]="{
     'active' : active4}" (click)="assignActive('active4')">Collections Addons</a>
-    <a [ngClass]="{
-      'active' : active5}" (click)="assignActive('active5')">Packages</a>
+  
 </div>
 
 <div class="content" *ngIf="active1">
@@ -97,7 +96,7 @@
       <div class="modal-content">
         <span class="close" (click)="closeItemCategories()">&times;</span>
         
-        <center>Choose Your Items : </center>
+      Choose Your Items : 
         <table class="table">
           <tr bgcolor="#f9f9f9">
             <th>Item</th>
@@ -217,8 +216,6 @@
  <div class="content" *ngIf="active4">
 <app-collectionaddons></app-collectionaddons>
  </div>
- <div class="content" *ngIf="active5">
-  <app-packages></app-packages>
-   </div>
+
 </body>
 </html>
