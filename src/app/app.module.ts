@@ -122,6 +122,7 @@ import { SettingsComponent } from './settings/settings.component';
       { path: 'clientinterface', component: ClientinterfaceComponent },
       { path: 'register', component: RegisterEmployeeComponent },
      { path: 'login', component: LoginComponent },
+     {path:'settings',component:SettingsComponent},
      
   // {path:'home',component:HomeComponent, canActivate:[AuthGuard]}
       {path:'home',component:HomeComponent},
