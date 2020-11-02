@@ -1,0 +1,93 @@
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--<meta http-equiv="refresh" content="20">-->
+
+
+<div *ngIf="showedit">
+  <app-editmodal></app-editmodal>
+  </div>
+  <div *ngIf="displaycreate">
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeCreate()">&times;</span>
+        
+        <table class="table table-borderless" width="100%">
+
+          <th style="text-align: center; color: black; ">
+            <h3>Add Menu</h3>
+          </th>
+
+          <tbody>
+
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="" placeholder="Menu Title" [(ngModel)]="menutitle" />
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="form-group" placeholder="yes/no" [(ngModel)]="menuactive" />
+              </td>
+            </tr>
+
+            <tr>
+              <td align="center">
+                <div class="form-group">
+                  <button type="button" class="btn btn-danger" (click)="addmenu();">Add Menu</button>
+                </div>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+
+
+
+
+  </div>
+  <div *ngIf="showinitial">
+    <a class="btn btn-primary" [routerLink]="['/sections']">Sections</a>
+
+    <button class="btn-primary" (click)="createMenu()">Create Menu</button>
+    <br />
+    <table class="table">
+      <tr bgcolor="#f9f9f9">
+        <th>Title</th>
+        <th>Active</th>
+        <th></th>
+      </tr>
+
+      <tr *ngFor="let menu of menus">
+        <td>
+          {{ menu.menu_Title }}
+        </td>
+        <td>
+          {{ menu.menu_Active }}
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="editmenu(menu.menu_Id,menu.menu_Title,menu.menu_Active);">Edit Menu</button>
+          &nbsp;
+          <button type="button" class="btn btn-danger" (click)="deletemenu(menu.menu_Id,menu.menu_Title,menu.menu_Active);">Delete Menu</button>
+          &nbsp;
+          <a class="btn btn-primary" [routerLink]="['/categories',menu.menu_Id]" (click)="assignmenuid(menu.menu_Id);">Categories</a>
+          &nbsp;
+          <a class="btn btn-primary" [routerLink]="['/packages',menu.menu_Id]" (click)="assignmenuid(menu.menu_Id);">Packages</a>
+          &nbsp;
+          <a class="btn btn-primary" [routerLink]="['/addones']">Add Ons</a>
+          &nbsp;
+          <a class="btn btn-primary" [routerLink]="['/collection',menu.menu_Id]" (click)="assignmenuid(menu.menu_Id);">Collections</a>
+         
+        </td>
+      </tr>
+    </table>
+
+
+  </div>
+  
+
+

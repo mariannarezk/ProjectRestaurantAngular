@@ -1,0 +1,45 @@
+
+<div *ngIf="displayedit">
+   
+    <table class="table table-borderless" width="100%">
+  
+      <th style="text-align: center; color: white; ">
+        <h3>Edit Menu</h3>
+      
+      </th>
+  
+      <tbody>
+  
+        <tr>
+          <td valign="middle" align="center" width="100%">
+  
+            <input type="text" class="" placeholder="Menu Title" [(ngModel)]="menutitle" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group" placeholder="yes/no" [(ngModel)]="menuactive" />
+          </td>
+        </tr>
+  
+        <tr>
+       
+          <td align="center">
+            <div class="form-group">
+              <button type="button" class="btn btn-danger" (click)="savemenuedit();">Edit Menu</button>
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-danger" (click)="BackToInitial();">Back</button>
+            </div>
+  
+          </td>
+  
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  </div>
+  <div *ngIf="displayInitial"><app-menu></app-menu></div>
+  
+  

@@ -1,0 +1,87 @@
+<div *ngIf="displayedit">
+    <app-editbranch></app-editbranch>
+  </div>
+  <div *ngIf="displaycreate">
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeCreate()">&times;</span>
+  
+        <table class="table table-borderless" width="100%">
+  
+          <th style="text-align: center; color: black; ">
+            <h3>Add Branch</h3>
+          </th>
+         
+          <tbody>
+  
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="" placeholder="Branch Name" [(ngModel)]="branchname" />
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="form-group" placeholder="Branch Location" [(ngModel)]="branchlocation" />
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="number" class="form-group" placeholder="Branch Phone Number" [(ngModel)]="branchphonenumber" />
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="form-group" placeholder="Branch Notes" [(ngModel)]="branchnotes" />
+              </td>
+            </tr>
+            <tr>
+              <td align="center">
+                <div class="form-group">
+                  <button type="button" class="btn btn-danger" (click)="createBranch();">Add Branch</button>
+                </div>
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="displayInitial">
+    <button class="btn-primary" (click)="showcreate()">Create Branch</button>
+    <br />
+    <table class="table">
+      <tr>
+        <th>
+           Name
+         </th>
+         <th>Location</th>
+         <th>Phone Number</th>
+         <th>Notes</th>
+       </tr>
+  
+      <tr *ngFor="let branch of branches">
+        <td>
+          {{ branch.branchName }}
+        </td>
+        <td>
+          {{ branch.branchLocation }}
+        </td>
+        <td>
+          {{ branch.branchPhoneNumber }}
+        </td>
+        <td>
+          {{ branch.branchNotes }}
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="editbranch(branch.branchId,branch.branchName,branch.branchLocation,branch.branchNotes,branch.branchPhoneNumber);">Edit Branch</button>
+          &nbsp;
+  
+          <a class="btn btn-primary" [routerLink]="['/homemanager',branch.branchId]" (click)="homemanager(branch.branchId);">Next</a>
+        </td>
+      </tr>
+    </table>
+  </div>

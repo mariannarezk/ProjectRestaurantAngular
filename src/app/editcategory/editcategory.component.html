@@ -1,0 +1,55 @@
+
+<div *ngIf="displayedit">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeEditCategory()">&times;</span>
+    <table class="table table-borderless" width="100%">
+  
+      <th style="text-align: center; color: white; ">
+        <h3>Edit Category</h3>
+  
+      </th>
+  
+      <tbody>
+  
+        <tr>
+          <td valign="middle" align="center" width="100%">
+  
+            <input type="text" class="" [(ngModel)]="categname" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group"  [(ngModel)]="categdescr" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group"  [(ngModel)]="categVisible" />
+          </td>
+        </tr>
+  
+        <tr>
+  
+          <td align="center">
+            <div class="form-group">
+              <button type="button" class="btn btn-danger" (click)="savecatgedit();">
+                Save
+              </button>
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-danger" (click)="BackToInitial();">Cancel</button>
+            </div>
+  
+          </td>
+  
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  </div>
+  </div></div>
+  <div *ngIf="displayInitial"><app-category></app-category></div>
+  
+  

@@ -1,0 +1,63 @@
+
+<div *ngIf="displayedit">
+
+    <table class="table table-borderless" width="100%">
+  
+      <th style="text-align: center; color: black; ">
+        <h3>Edit Item</h3>
+  
+      </th>
+  
+      <tbody>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+  
+            <input type="text" class=""  [(ngModel)]="itemname" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group"  [(ngModel)]="itemprice" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group"  [(ngModel)]="itemdescr" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group"  [(ngModel)]="itemcalories" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group" placeholder="Size" [(ngModel)]="itemsize" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group"  [(ngModel)]="itemdiscount" />
+          </td>
+        </tr>
+        <tr>
+  
+          <td align="center">
+            <div class="form-group">
+              <button type="button" class="btn btn-danger" (click)="saveitemedit();">Edit Item</button>
+            </div>
+         
+      
+          </td>
+      
+        </tr>
+  
+  
+      
+  
+      </tbody>
+  
+    </table>
+  </div>
+
+  

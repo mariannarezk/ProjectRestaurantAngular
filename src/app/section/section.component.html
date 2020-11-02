@@ -1,0 +1,73 @@
+<div *ngIf="displayedit">
+    <app-editsection></app-editsection>
+  </div>
+  <div *ngIf="displaycreate">
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeCreate()">&times;</span>
+  
+        <table class="table table-borderless" width="100%">
+  
+          <th style="text-align: center; color: black; ">
+            <h3>Add Section</h3>
+          </th>
+  
+          <tbody>
+  
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="" placeholder="Section Name" [(ngModel)]="sectionname" />
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="form-group" placeholder="yes/no" [(ngModel)]="sectionavailable" />
+              </td>
+            </tr>
+  
+  
+            <tr>
+              <td align="center">
+                <div class="form-group">
+                  <button type="button" class="btn btn-danger" (click)="createSection();">Add Section</button>
+                </div>
+  
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+    </div>
+  
+  </div>
+  <div *ngIf="displayinitial">
+    <button class="btn-primary" (click)="showcreate()" >Create Section</button>
+    <br />
+    <table class="table">
+      <tr bgcolor="#f9f9f9">
+        <th>Name</th>
+        <th>Available </th>
+  
+        <th></th>
+      </tr>
+      <tr *ngFor="let section of sections">
+        <td>
+          {{ section.sectionName }}
+        </td>
+        <td>
+          {{ section.sectionAvailable }}
+        </td>
+        <td>
+               <button type="button" class="btn btn-primary" (click)="editsection(section.sectionId,section.sectionName,section.sectionAvailable);">Edit Section</button>
+       
+          &nbsp;
+  
+          &nbsp;
+        </td>
+      </tr>
+    </table>
+  </div>
+  

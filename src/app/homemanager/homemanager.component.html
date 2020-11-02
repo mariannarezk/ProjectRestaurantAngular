@@ -1,0 +1,224 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="dropdown">
+    <button class="dropbtn"><label>{{showedmenuname}}</label>
+      </button>
+    <div class="dropdown-content" >
+        <div *ngFor="let menu of menus">
+     
+        <button id="btnm" class="btn btn-absolute" (click)="assignMenu(menu.menu_Id,menu.menu_Title,menu.menu_Active);">
+            {{ menu.menu_Title }}
+        </button>  
+        
+    </div>
+    </div>
+  </div>
+<div class="sidebar">
+  <a [ngClass]="{
+    'active' : active1}" (click)="assignActive('active1')" >Menu Details</a>
+  <a [ngClass]="{
+    'active' : active2}" (click)="assignActive('active2')">Categories</a>
+  <a [ngClass]="{
+    'active' : active3}" (click)="assignActive('active3')">Items</a>
+  <a [ngClass]="{
+    'active' : active4}" (click)="assignActive('active4')">Collections Addons</a>
+    <a [ngClass]="{
+      'active' : active5}" (click)="assignActive('active5')">Packages</a>
+</div>
+
+<div class="content" *ngIf="active1">
+ 
+ <table class="table table-borderless" width="100%">
+<tr>
+  <th style="text-align: center; color: black; ">
+    <h3>{{showedmenuname}} Details</h3>
+  </th>
+</tr>
+ 
+  <tbody *ngIf="aredisabled; else canedit">
+    
+    <tr>
+      <td valign="middle" align="center" width="100%">
+        <input type="text" class="" placeholder="Menu Title" [(ngModel)]="showedmenuname" disabled />
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" align="center" width="100%">
+        <input type="text" class="form-group" placeholder="yes/no" [(ngModel)]="showedmenuactive" disabled />
+      </td>
+    </tr>
+
+    <tr>
+      <td align="center">
+        <div class="form-group">
+          <button type="button" class="btn btn-danger" (click)="editmenu();">Edit Menu</button>
+        </div>
+
+      </td>
+
+    </tr>
+ 
+  </tbody>
+
+<ng-template #canedit>
+  <tbody>  
+    <tr>
+      <td valign="middle" align="center" width="100%">
+        <input type="text" class="" placeholder="Menu Title" [(ngModel)]="showedmenuname"  />
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" align="center" width="100%">
+        <input type="text" class="form-group" placeholder="yes/no" [(ngModel)]="showedmenuactive"  />
+      </td>
+    </tr>
+
+    <tr>
+      <td align="center">
+        <div class="form-group">
+          <button type="button" class="btn btn-danger" (click)="saveeditmenu();">Save</button>
+        </div>
+
+      </td>
+
+    </tr>
+ 
+  </tbody>
+ 
+</ng-template>
+</table>
+</div>
+<div class="content" *ngIf="active2">
+  <div *ngIf="showitemscategory">
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeItemCategories()">&times;</span>
+        
+        <center>Choose Your Items : </center>
+        <table class="table">
+          <tr bgcolor="#f9f9f9">
+            <th>Item</th>
+      
+            <th></th>
+          </tr>
+          <tr *ngFor="let item of categoriesItems">
+            <td>
+              {{ item.itemName }}
+            </td>
+          
+              <div *ngIf="item.isChoosed">
+                yes
+                <input type="checkbox"  [(ngModel)]="item.isChoosed">
+               
+              </div>
+              <div *ngIf="!item.isChoosed">
+                no
+                <input type="checkbox" [(ngModel)]="item.isChoosed">
+              </div>
+            <td>
+              </td>
+              </tr>
+        </table>
+        <button type="button" class="btn btn-primary"
+        (click)="saveItemsCategory();">
+  Save
+</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="displayeditcategory">
+   
+         <app-editcategory></app-editcategory>
+       
+  </div>
+  <div *ngIf="displaycreatecategory">
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeCreateCategory()">&times;</span>
+  
+        <table class="table table-borderless" width="100%">
+  
+          <th style="text-align: center; color: black; ">
+            <h3>Add Category</h3>
+          </th>
+  
+          <tbody>
+  
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="" placeholder="Category Name" [(ngModel)]="categoryname" />
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="form-group" placeholder="Description" [(ngModel)]="categorydescr" />
+              </td>
+            </tr>
+  
+  
+            <tr>
+              <td align="center">
+                <div class="form-group">
+                  <button type="button" class="btn btn-danger" (click)="createCategory();">Add Category</button>
+                </div>
+  
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+    </div>
+  
+  
+  
+  
+  </div>
+
+    <button class="btn-primary" (click)="showcreatecategory()">Create Category</button>
+    <br />
+    <table class="table">
+      <tr bgcolor="#f9f9f9">
+        <th>Name</th>
+        <th>Description</th>
+  
+        <th></th>
+      </tr>
+      <tr *ngFor="let category of categories">
+        <td>
+         
+          {{ category.categName }}
+        </td>
+        <td>
+          {{ category.categDescription }}
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="editcategory(category.categId,category.categName,category.categDescription,category.categVisible,category.menuId);">
+            Edit Category
+          </button>
+          &nbsp;
+          <a class="btn btn-primary" (click)="getItemsCategory(category.categId)" >Items</a>
+          &nbsp;
+        </td>
+      </tr>
+    </table>
+ 
+  
+ </div>
+ <div class="content" *ngIf="active3">
+<app-item></app-item>
+ </div>
+ <div class="content" *ngIf="active4">
+<app-collectionaddons></app-collectionaddons>
+ </div>
+ <div class="content" *ngIf="active5">
+  <app-packages></app-packages>
+   </div>
+</body>
+</html>

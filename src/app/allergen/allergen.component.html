@@ -1,0 +1,65 @@
+<h2>Allergens : </h2>
+
+<table class="table">
+  <tr bgcolor="#f9f9f9">
+    <th>Name</th>
+    <th>Description </th>
+
+    <th></th>
+  </tr>
+  <tr *ngFor="let c of choosedallergens">
+    <td>
+      {{ c.allergenName }}
+    </td>
+    <td>
+      {{ c.allergenDescription }}
+    </td>
+
+    <td>
+      <button type="button" class="btn btn-primary"
+              (click)="deleteallergen(c.allergenId);">
+        Delete Allergen
+      </button>
+
+      &nbsp;
+
+      &nbsp;
+    </td>
+  </tr>
+</table>
+More Allergens ?<button type="button" class="btn btn-primary"
+                                 (click)="getotherallergens();">
+  Click Here
+</button>
+&nbsp;
+
+
+<div *ngIf="showothers">
+  Choose Ingredients : 
+<table class="table">
+  <tr bgcolor="#f9f9f9">
+    <th>Name</th>
+    <th>Description </th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let k of otherallergens">
+    <td>
+      {{ k.allergenName }}
+    </td>
+    <td>
+      {{ k.allergenDescription }}
+    </td>
+ 
+    <td>
+      <button type="button" class="btn btn-primary" (click)="chooseallergen(k.allergenId);">
+       Choose
+      </button>
+
+      &nbsp;
+
+      &nbsp;
+    </td>
+  </tr>
+</table>
+
+</div>

@@ -1,0 +1,111 @@
+
+<div *ngIf="displaycreate">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeCreate()">&times;</span>
+      
+      <table class="table table-borderless" width="100%">
+
+        <th style="text-align: center; color: black; ">
+          <h3>Add Collection</h3>
+        </th>
+
+        <tbody>
+
+          <tr>
+            <td valign="middle" align="center" width="100%">
+              <input type="text" class="" placeholder="Ensemble Title" [(ngModel)]="ensembletitle" />
+            </td>
+          </tr>
+         
+
+          <tr>
+            <td align="center">
+              <div class="form-group">
+                <button type="button" class="btn btn-danger" (click)="addensemble();">Add Collection</button>
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+  <div *ngIf="displayinitial">
+    <button class="btn-primary" (click)="showcreate()">Create Ensemble</button>
+    <br />
+    
+    <table class="table">
+      <tr bgcolor="#f9f9f9">
+        <th>Ensemble</th>
+  
+        <th></th>
+      </tr>
+      <tr *ngFor="let ensemble of ensembles">
+        <td>
+          {{ ensemble.ensembleName }}
+        </td>
+  
+        <td>
+         
+  
+          &nbsp;
+          <button type="button" class="btn btn-primary"
+                  (click)="putaddones(ensemble.ensembleAddonId);">
+            Put AddOnes
+          </button>
+          &nbsp;
+          <button type="button" class="btn btn-danger"
+          (click)="deleteEnsemble(ensemble.ensembleAddonId);">
+    Delete
+  </button>
+        </td>
+      </tr>
+    </table>
+    &nbsp;
+    
+  </div>
+  <div *ngIf="showaddons">
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeSelect()">&times;</span>
+        
+        <center>Choose Your AddOnes : </center>
+        <table class="table">
+          <tr bgcolor="#f9f9f9">
+            <th>Addone</th>
+      
+            <th></th>
+          </tr>
+          <tr *ngFor="let addone of addones">
+            <td>
+              {{ addone.addonName }}
+            </td>
+          
+              <div *ngIf="addone.choosed">
+                
+                <input type="checkbox"  [(ngModel)]="addone.choosed"><br>
+                Price : <input type="text"   [(ngModel)]="addone.price" />
+              </div>
+              <div *ngIf="!addone.choosed">
+                
+                <input type="checkbox" [(ngModel)]="addone.choosed">
+              </div>
+            <td>
+              </td>
+              </tr>
+        </table>
+        <button type="button" class="btn btn-primary"
+        (click)="saveAddones();">
+  Save
+</button>
+      </div>
+    </div>
+  </div>
+
+
+  

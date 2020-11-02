@@ -1,0 +1,77 @@
+
+
+<div *ngIf="displayedit">
+    <app-editcategory></app-editcategory>
+  </div>
+  <div *ngIf="displaycreate">
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeCreate()">&times;</span>
+  
+        <table class="table table-borderless" width="100%">
+  
+          <th style="text-align: center; color: black; ">
+            <h3>Add Category</h3>
+          </th>
+  
+          <tbody>
+  
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="" placeholder="Category Name" [(ngModel)]="categoryname" />
+              </td>
+            </tr>
+            <tr>
+              <td valign="middle" align="center" width="100%">
+                <input type="text" class="form-group" placeholder="Description" [(ngModel)]="categorydescr" />
+              </td>
+            </tr>
+  
+  
+            <tr>
+              <td align="center">
+                <div class="form-group">
+                  <button type="button" class="btn btn-danger" (click)="createCategory();">Add Category</button>
+                </div>
+  
+              </td>
+  
+            </tr>
+  
+          </tbody>
+  
+        </table>
+      </div>
+    </div>
+  
+  
+  
+  
+  </div>
+  <div *ngIf="displayinitial">
+    <button class="btn-primary" (click)="showcreate()">Create Category</button>
+    <br />
+    <table class="table">
+      <tr bgcolor="#f9f9f9">
+        <th>Name</th>
+        <th>Description</th>
+  
+        <th></th>
+      </tr>
+      <tr *ngFor="let category of categories">
+        <td>
+          {{ category.categName }}
+        </td>
+        <td>
+          {{ category.categDescription }}
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="editcategory(category.categId,category.categName,category.categDescription,category.categVisible,category.menuId);">Edit Category</button>
+          &nbsp;
+          <a class="btn btn-primary" [routerLink]="['/items',category.categId]" >Items</a>
+          &nbsp;
+        </td>
+      </tr>
+    </table>
+  </div>
+  

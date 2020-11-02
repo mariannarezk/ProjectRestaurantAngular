@@ -1,0 +1,51 @@
+
+<div *ngIf="displayedit">
+    
+    <table class="table table-borderless" width="100%">
+  
+      <th style="text-align: center; color: black; ">
+        <h3>Edit AddOn</h3>
+  
+      </th>
+  
+      <tbody>
+  
+        <tr>
+          <td valign="middle" align="center" width="100%">
+  
+            <input type="text" class="" [(ngModel)]="addonename" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group" [(ngModel)]="addonesize" />
+          </td>
+        </tr>
+        <tr>
+          <td valign="middle" align="center" width="100%">
+            <input type="text" class="form-group" [(ngModel)]="addoneprice" />
+          </td>
+        </tr>
+  
+  
+        <tr>
+  
+          <td align="center">
+            <div class="form-group">
+              <button type="button" class="btn btn-danger" (click)="saveaddoneedit();">Edit Addone</button>
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-danger" (click)="BackToInitial();">Back</button>
+            </div>
+  
+          </td>
+  
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  </div>
+  <div *ngIf="displayInitial"><app-addones></app-addones></div>
+  
+  

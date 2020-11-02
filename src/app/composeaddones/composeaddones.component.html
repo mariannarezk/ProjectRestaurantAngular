@@ -1,0 +1,82 @@
+<h2>{{itemname.itemName}} Add Ons' : </h2>
+
+<table class="table">
+  <tr bgcolor="#f9f9f9">
+    <th>Name</th>
+    <th>Quantity </th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let addone of alladdones">
+    <td>
+      {{ addone.addOnName }}
+    </td>
+    <td>
+      {{ addone.quantity }}
+    </td>
+<td>
+    {{addone.price}}
+</td>
+    <td>
+      <button type="button" class="btn btn-primary"
+              (click)="editquantity(addone.obligId,addone.itemId,addone.addOnsId,addone.quantity,addone.price);">
+        Edit 
+      </button>
+
+      &nbsp;
+
+      &nbsp;
+    </td>
+  </tr>
+</table>
+More Obligatory AddOnes ?<button type="button" class="btn btn-primary"
+                                 (click)="createobligadon(itemname.itemId);">
+  Click Here
+</button>
+&nbsp;
+<a class="btn btn-danger"
+   [routerLink]="['/items',itemname.categId]">Back</a>
+<div *ngIf="displaycreate">
+  <app-createobligadon></app-createobligadon>
+</div>
+<div *ngIf="displayedit">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeEdit()">&times;</span>
+
+      <table class="table table-borderless" width="100%">
+
+        <th style="text-align: center; color: black; ">
+          <h3>Edit</h3>
+        </th>
+
+        <tbody>
+
+          <tr>
+            <td valign="middle" align="center" width="100%">
+              <input type="number" class="" [(ngModel)]="editqty" />
+            </td>
+          </tr>
+          <tr>
+            <td valign="middle" align="center" width="100%">
+              <input type="text" class="" [(ngModel)]="editprice" />
+            </td>
+          </tr>
+
+
+          <tr>
+            <td align="center">
+              <div class="form-group">
+                <button type="button" class="btn btn-danger" (click)="saveEdit();">Save</button>
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

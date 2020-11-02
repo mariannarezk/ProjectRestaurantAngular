@@ -1,0 +1,67 @@
+<div *ngIf="showcreate">
+  <H2>Create your own restaurant!</H2>
+  <br />
+  
+  <div class="form-group">
+  <input type="text" class="form-control" placeholder="Name" [(ngModel)]="restaurantname" />
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Logo" [(ngModel)]="restaurantlogo" />
+  </div>  
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Phone Number" [(ngModel)]="restaurantphone" />
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Notes" [(ngModel)]="restaurantnotes" />
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-primary" (click)="createrest();">Create </button>
+  </div>
+  
+  <br />
+  <br />
+  <div class="form-group">
+    <button type="button" class="btn btn-danger" (click)="BackToAll();">Back To All Restaurants!</button>
+    </div>
+  </div>
+  <div *ngIf="showall">
+    <div class="form-group">
+      <a class="btn btn-primary" (click)="showCreate();" >Create Restaurant</a>
+    </div>
+    <table class="table">
+      <tr bgcolor="#f9f9f9">
+        <th>Restaurant Name</th>
+        <th>Restaurant Logo</th>
+        <th>Restaurant Phone Number</th>
+        <th>Restaurant Notes</th>
+        <th></th>
+      </tr>
+  
+      <tr *ngFor="let r of allrests">
+        <td>
+          {{ r.restaurantName }}
+        </td>
+        <td>
+          {{ r.restaurantLogo }}
+        </td>
+        <td>
+          {{ r.restPhoneNumber }}
+        </td>
+        <td>  
+          {{ r.restNotes }}
+        </td>
+        <td>
+          <a class="btn btn-primary" [routerLink]="['/restbranch',r.restaurantId]" >Go to branches</a>        </td>
+      </tr>
+    </table>
+  
+  
+  </div>
+
+
+
+
+
+
+
+

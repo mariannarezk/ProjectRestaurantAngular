@@ -1,0 +1,43 @@
+
+<div *ngIf="displaycreate">
+    <app-createensemble></app-createensemble>
+  </div>
+  
+  <div *ngIf="displayinitial">
+    <button class="btn-primary" (click)="showcreate()">Create Ensemble</button>
+    <br />
+    <table class="table">
+      <tr bgcolor="#f9f9f9">
+        <th>Ensemble</th>
+  
+        <th></th>
+      </tr>
+      <tr *ngFor="let ensemble of ensembles">
+        <td>
+          Ensemble #{{ ensemble.ensembleAddonId }}
+        </td>
+  
+        <td>
+          <button type="button" class="btn btn-primary"
+                  (click)="showensembledetails();">
+            More Details
+          </button>
+  
+          &nbsp;
+          <button type="button" class="btn btn-primary"
+                  (click)="putaddones(ensemble.ensembleAddonId);">
+            Put AddOnes
+          </button>
+          &nbsp;
+        </td>
+      </tr>
+    </table>
+    &nbsp;
+    <a class="btn btn-danger"
+       [routerLink]="['/items',categoryid]">Back</a>
+  </div>
+  <div *ngIf="displayaddons">
+    <app-composeensaddones></app-composeensaddones>
+  </div>
+
+  

@@ -1,0 +1,227 @@
+<div *ngIf="displaycreate">
+  <app-createitem></app-createitem>
+</div>
+<div *ngIf="displayedit">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeEditItem()">&times;</span>
+  <app-edititem></app-edititem>
+  <table class="table table-borderless">
+  
+</table>
+  </div></div>
+
+</div>
+<div *ngIf="displayensembleitems">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeEnsembleItems()">&times;</span>
+      
+      <center>Choose Your Ensembles : </center>
+      <table class="table">
+        <tr bgcolor="#f9f9f9">
+          <th>Ensemble</th>
+    
+          <th></th>
+        </tr>
+        <tr *ngFor="let ens of ensembleitems">
+          <td>
+            {{ ens.ensembleName }}
+          </td>
+        
+            <div *ngIf="ens.isChoosed">
+              
+              <input type="checkbox"  [(ngModel)]="ens.isChoosed">
+             
+            </div>
+            <div *ngIf="!ens.isChoosed">
+             
+              <input type="checkbox" [(ngModel)]="ens.isChoosed">
+            </div>
+          <td>
+            </td>
+            </tr>
+      </table>
+      <button type="button" class="btn btn-primary"
+      (click)="saveEnsembleItems();">
+Save
+</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="displaycomposeingredients">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeItemIngredients()">&times;</span>
+      
+      <center>Choose Your Ingredients : </center>
+      <table class="table">
+        <tr bgcolor="#f9f9f9">
+          <th>Ingredient</th>
+    
+          <th></th>
+        </tr>
+        <tr *ngFor="let ingr of itemsingredients">
+          <td>
+            {{ ingr.ingredientName }}
+          </td>
+        
+            <div *ngIf="ingr.isChoosed">
+              yes
+              <input type="checkbox"  [(ngModel)]="ingr.isChoosed">
+             <input type="number" [(ngModel)]="ingr.quantity">
+            </div>
+            <div *ngIf="!ingr.isChoosed">
+              no
+              <input type="checkbox" [(ngModel)]="ingr.isChoosed">
+            </div>
+          <td>
+            </td>
+            </tr>
+      </table>
+      <button type="button" class="btn btn-primary"
+      (click)="saveItemsIngredients();">
+Save
+</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="displayobligaddones">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeItemObligAddones()">&times;</span>
+      
+      <center>Choose Your Obligatory Addones : </center>
+      <table class="table">
+        <tr bgcolor="#f9f9f9">
+          <th>AddOne</th>
+    
+          <th></th>
+        </tr>
+        <tr *ngFor="let addone of obligadonesitems">
+          <td>
+            {{ addone.addonName }}
+          </td>
+        
+            <div *ngIf="addone.isChoosed">
+              yes
+              <input type="checkbox"  [(ngModel)]="addone.isChoosed">
+             <input type="number" [(ngModel)]="addone.quantity">
+             <input type="text" [(ngModel)]="addone.price">
+            </div>
+            <div *ngIf="!addone.isChoosed">
+              no
+              <input type="checkbox" [(ngModel)]="addone.isChoosed">
+            </div>
+          <td>
+            </td>
+            </tr>
+      </table>
+      <button type="button" class="btn btn-primary"
+      (click)="saveItemObligAddones();">
+Save
+</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="displaycomposeallergens">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeItemAllergens()">&times;</span>
+      
+      <center>Choose Your Allergens : </center>
+      <table class="table">
+        <tr bgcolor="#f9f9f9">
+          <th>Allergen</th>
+    
+          <th></th>
+        </tr>
+        <tr *ngFor="let allrg of itemsallergens">
+          <td>
+            {{ allrg.allergenName }}
+          </td>
+        
+            <div *ngIf="allrg.isChoosed">
+              yes
+              <input type="checkbox"  [(ngModel)]="allrg.isChoosed">
+            
+            </div>
+            <div *ngIf="!allrg.isChoosed">
+              no
+              <input type="checkbox" [(ngModel)]="allrg.isChoosed">
+            </div>
+          <td>
+            </td>
+            </tr>
+      </table>
+      <button type="button" class="btn btn-primary"
+      (click)="saveItemsAllergens();">
+Save
+</button>
+    </div>
+  </div>
+</div>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+ 
+    <button class="btn-primary" (click)="showcreate()">Create Item</button>
+    <br />
+    <table class="table">
+      <tr bgcolor="#f9f9f9">
+        <th>Name</th>
+        <th>Price </th>
+        <th>Description</th>
+        <th>Calories</th>
+        <th>Size</th>
+        <th>Discount</th>
+        <th>Image</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let item of itemsmenu">
+        <td>
+          {{ item.itemName }}
+        </td>
+        <td>
+          {{ item.itemPrice }}
+        </td>
+        <td>
+          {{item.itemDescription}}
+        </td>
+        <td>
+          {{item.itemCalories}}
+        </td>
+        <td>
+          {{item.itemSize}}
+        </td>
+        <td>
+          {{item.itemDiscount}}
+        </td>
+        <td>
+          {{item.itemImage}}
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary"
+                  (click)="edititem(item.itemId,item.itemName,item.itemPrice,item.itemDescription,item.itemCalories,item.itemSize,
+                 item.itemDiscount,item.categId,item.menu_Id );">
+            Edit Item
+          </button>
+          &nbsp;
+          <a class="btn btn-primary"
+             (click)="showitemsingr(item.itemId)">Compose Ingredients</a>
+         <a class="btn btn-primary"
+         (click)="showitemsallergens(item.itemId)">Compose Allergens</a>
+          &nbsp;
+          <a class="btn btn-primary"
+          (click)="getObligAddonesItem(item.itemId)">Compose Obligatory Add On'</a>
+          &nbsp;
+          <a class="btn btn-primary"
+            (click)="getEnsembleItems(item.itemId,item.menu_Id)">Compose Optional Add On'</a>
+        </td>
+      </tr>
+    </table>
+ 
+  </html>
+ 

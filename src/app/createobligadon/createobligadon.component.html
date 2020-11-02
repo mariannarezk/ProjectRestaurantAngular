@@ -1,0 +1,72 @@
+<div *ngIf="displayaddones">
+    <table class="table">
+      <tr bgcolor="#f9f9f9">
+        <th>Name</th>
+        <th>Size </th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let addone of suppaddones">
+        <td>
+          {{ addone.addOnesName }}
+        </td>
+        <td>
+          {{ addone.addOnesSize }}
+        </td>
+       
+        <td>
+          <button type="button" class="btn btn-primary"
+                  (click)="chooseaddone(addone.addOnesId);">
+            Choose
+          </button>
+  
+          &nbsp;
+  
+          &nbsp;
+        </td>
+      </tr>
+    </table>
+    <div *ngIf="displaychoose">
+      <div class="modal">
+        <div class="modal-content">
+          <span class="close" (click)="closeChoose()">&times;</span>
+  
+          <table class="table table-borderless" width="100%">
+  
+            <th style="text-align: center; color: black; ">
+              <h3>Quantity</h3>
+            </th>
+            <th style="text-align: center; color: black; ">
+              <h3>Price</h3>
+            </th>
+            <tbody>
+  
+              <tr>
+                <td valign="middle" align="center" width="100%">
+                  <input type="number" class="" [(ngModel)]="chooseqty" />
+                </td>
+              
+              
+                <td valign="middle" align="center" width="100%">
+                  <input type="text" class="" [(ngModel)]="choosePrice" />
+                </td>
+              </tr>
+  
+  
+              <tr>
+                <td align="center">
+                  <div class="form-group">
+                    <button type="button" class="btn btn-danger" (click)="saveChoose();">Save</button>
+                  </div>
+  
+                </td>
+  
+              </tr>
+  
+            </tbody>
+  
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
