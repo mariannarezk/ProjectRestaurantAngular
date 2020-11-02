@@ -45,9 +45,9 @@ import { RegisterEmployeeComponent } from './register-employee/register-employee
 import { LoginComponent } from './login/login.component';
 import { CollectionaddonsComponent } from './collectionaddons/collectionaddons.component';
 import { HomemanagerComponent } from './homemanager/homemanager.component';
-import { TreeExampleComponent } from './tree-example/tree-example.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DataTablesModule} from 'angular-datatables';
+import { SettingsComponent } from './settings/settings.component';
 //import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
@@ -89,7 +89,8 @@ import {DataTablesModule} from 'angular-datatables';
     LoginComponent,
     CollectionaddonsComponent,
     HomemanagerComponent,
-    TreeExampleComponent
+    SettingsComponent
+    
   ],
   imports: [
     BrowserModule,

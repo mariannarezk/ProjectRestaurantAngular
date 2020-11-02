@@ -26,15 +26,9 @@
             "styles": [
               "src/custom-theme.scss",
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/datatables.net-dt/css/jquery.dataTables.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-            "node_modules/jqeury/dist/jquery.min.js",
-            "node_modules/popper.js/dist/umd/popper.min.js",
-            "node_modules/bootstrap/dist/js/bootstrap.min.js",
-            "node_modules/datatables.net/js/jquery.dataTables.js"
-
             ]
           },
           "configurations": {
@@ -130,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "ProjectRestaurantAngular"
+  "defaultProject": "ProjectRestaurantAngular",
+  "cli": {
+    "analytics": "d970d058-1f67-4231-9cfb-2dbaabcd0c00"
+  }
 }
