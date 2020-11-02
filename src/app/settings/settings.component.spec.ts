@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TreeExampleComponent } from './tree-example.component';
+import { SettingsComponent } from './settings.component';
 
-describe('TreeExampleComponent', () => {
-  let component: TreeExampleComponent;
-  let fixture: ComponentFixture<TreeExampleComponent>;
+describe('SettingsComponent', () => {
+  let component: SettingsComponent;
+  let fixture: ComponentFixture<SettingsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TreeExampleComponent ]
+      declarations: [ SettingsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TreeExampleComponent);
+    fixture = TestBed.createComponent(SettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
