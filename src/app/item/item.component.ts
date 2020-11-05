@@ -76,7 +76,7 @@ this.displaycomposeallergens=false;
   
 
   showcreate() {
-    this.dataService.categoryid = this.categid;
+   // this.dataService.categoryid = this.categid;
     this.displaycreate = true;
   
   }
