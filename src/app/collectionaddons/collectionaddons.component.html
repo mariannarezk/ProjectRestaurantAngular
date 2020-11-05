@@ -74,7 +74,25 @@
       <div class="modal-content">
         <span class="close" (click)="closeSelect()">&times;</span>
         
-        <center>Choose Your AddOnes : </center>
+        Choose Your AddOnes : 
+        <ng-select 
+        [items]="addones"
+        bindLabel="name"
+            placeholder="Select item"
+            appendTo="body"
+            multiple="true"
+            [searchable]="true" 
+            [clearable]="true">
+            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+              <div class="ng-value" *ngFor="let item of addones | slice:0:2">
+                  <span class="ng-value-label"> {{item.addonName}}</span>
+                  <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+              </div>
+              <div class="ng-value" *ngIf="items.length > 2">
+                  <span class="ng-value-label">{{items.length - 2}} more...</span>
+              </div>
+          </ng-template>
+        </ng-select>
         <table class="table">
           <tr bgcolor="#f9f9f9">
             <th>Addone</th>
@@ -106,6 +124,8 @@
       </div>
     </div>
   </div>
+
+ 
 
 
   

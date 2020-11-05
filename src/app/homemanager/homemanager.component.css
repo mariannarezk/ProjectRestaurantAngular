@@ -206,4 +206,7 @@ body {
  input[type=text]:focus {
    border: 2px solid #FB4D4D;
  }
+ .ng-select.ng-value{
+   display: none;
+ }
   

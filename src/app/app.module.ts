@@ -49,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DataTablesModule} from 'angular-datatables';
 import { SettingsComponent } from './settings/settings.component';
 //import {ReactiveFormsModule} from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { SettingsComponent } from './settings/settings.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgSelectModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -123,6 +125,7 @@ import { SettingsComponent } from './settings/settings.component';
       { path: 'register', component: RegisterEmployeeComponent },
      { path: 'login', component: LoginComponent },
      {path:'settings',component:SettingsComponent},
+     {path:'registeremployee',component:RegisterEmployeeComponent},
      
   // {path:'home',component:HomeComponent, canActivate:[AuthGuard]}
       {path:'home',component:HomeComponent},

@@ -2,6 +2,12 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<style>
+  .ng-value{
+    display: none;
+  }
+</style>
+
 <body>
   <div class="dropdown">
     <button class="dropbtn"><label>{{showedmenuname}}</label>
@@ -91,13 +97,26 @@
 </table>
 </div>
 <div class="content" *ngIf="active2">
-  <div *ngIf="showitemscategory">
+ <!-- <div *ngIf="showitemscategory">
     <div class="modal">
       <div class="modal-content">
         <span class="close" (click)="closeItemCategories()">&times;</span>
         
       Choose Your Items : 
-        <table class="table">
+      <ng-select bindLabel="name"
+      placeholder="Select item"
+      appendTo="body"
+      multiple="true"
+      [searchable]="true" 
+      [clearable]="true"
+      >
+      <ng-option [value]="item.id"  *ngFor="let item of categoriesItems">
+          
+          {{item.itemName}}
+      </ng-option>
+      </ng-select>
+      
+       // <table class="table">
           <tr bgcolor="#f9f9f9">
             <th>Item</th>
       
@@ -127,7 +146,7 @@
 </button>
       </div>
     </div>
-  </div>
+  </div>-->
 
   <div *ngIf="displayeditcategory">
    
@@ -202,8 +221,8 @@
             Edit Category
           </button>
           &nbsp;
-          <a class="btn btn-primary" (click)="getItemsCategory(category.categId)" >Items</a>
-          &nbsp;
+        <!-- <a class="btn btn-primary" (click)="getItemsCategory(category.categId)" >Items</a>
+          &nbsp;--> 
         </td>
       </tr>
     </table>

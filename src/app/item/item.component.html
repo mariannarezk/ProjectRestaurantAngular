@@ -17,7 +17,7 @@
     <div class="modal-content">
       <span class="close" (click)="closeEnsembleItems()">&times;</span>
       
-      <center>Choose Your Ensembles : </center>
+      Choose Your Ensembles : 
       <table class="table">
         <tr bgcolor="#f9f9f9">
           <th>Ensemble</th>
@@ -54,7 +54,7 @@ Save
     <div class="modal-content">
       <span class="close" (click)="closeItemIngredients()">&times;</span>
       
-      <center>Choose Your Ingredients : </center>
+      Choose Your Ingredients : 
       <table class="table">
         <tr bgcolor="#f9f9f9">
           <th>Ingredient</th>
@@ -67,12 +67,12 @@ Save
           </td>
         
             <div *ngIf="ingr.isChoosed">
-              yes
+             
               <input type="checkbox"  [(ngModel)]="ingr.isChoosed">
-             <input type="number" [(ngModel)]="ingr.quantity">
+             
             </div>
             <div *ngIf="!ingr.isChoosed">
-              no
+            
               <input type="checkbox" [(ngModel)]="ingr.isChoosed">
             </div>
           <td>
@@ -91,7 +91,7 @@ Save
     <div class="modal-content">
       <span class="close" (click)="closeItemObligAddones()">&times;</span>
       
-      <center>Choose Your Obligatory Addones : </center>
+      Choose Your Obligatory Addones : 
       <table class="table">
         <tr bgcolor="#f9f9f9">
           <th>AddOne</th>
@@ -104,13 +104,12 @@ Save
           </td>
         
             <div *ngIf="addone.isChoosed">
-              yes
+           
               <input type="checkbox"  [(ngModel)]="addone.isChoosed">
-             <input type="number" [(ngModel)]="addone.quantity">
              <input type="text" [(ngModel)]="addone.price">
             </div>
             <div *ngIf="!addone.isChoosed">
-              no
+             
               <input type="checkbox" [(ngModel)]="addone.isChoosed">
             </div>
           <td>
@@ -129,7 +128,7 @@ Save
     <div class="modal-content">
       <span class="close" (click)="closeItemAllergens()">&times;</span>
       
-      <center>Choose Your Allergens : </center>
+      Choose Your Allergens : 
       <table class="table">
         <tr bgcolor="#f9f9f9">
           <th>Allergen</th>
@@ -142,12 +141,12 @@ Save
           </td>
         
             <div *ngIf="allrg.isChoosed">
-              yes
+            
               <input type="checkbox"  [(ngModel)]="allrg.isChoosed">
             
             </div>
             <div *ngIf="!allrg.isChoosed">
-              no
+             
               <input type="checkbox" [(ngModel)]="allrg.isChoosed">
             </div>
           <td>

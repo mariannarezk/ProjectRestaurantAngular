@@ -88,6 +88,40 @@
 
 
   </div>
-  
+  <form role="form" #MySelectForm="ngForm" (submit)="onFormSubmit()">
+    <div class="form-group">
+      <fieldset class="form-group">
+        <label>Selection Required</label>
+  <ng-select bindLabel="name"
+placeholder="Select item"
+appendTo="body"
+[searchable]="true" 
+[clearable]="true"
+>
+<ng-option [value]="item.id"  *ngFor="let item of menus"  >
+    
+    {{item.menu_Title}}
+</ng-option>
+</ng-select>
+</fieldset>
+</div>
+<div class="form-group">
+  <fieldset class="form-group">
+      <button class="btn btn-primary">Submit</button>
+    </fieldset>
+</div>
+</form>
 
+<ng-select
+[items]="menus"
+bindLabel="menu_Title"
+
+
+[(ngModel)]="selectedMenuId"
+>
+</ng-select>
+
+<br>
+{{selectedMenuId | json}}
+{{confirmedmenuid}}
 
