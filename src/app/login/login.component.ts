@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,11 @@ export class LoginComponent implements OnInit {
   public email:string;
   //public confirmpassword:string;
   public password:any;
-  constructor(private http: HttpClient,private router: Router) {
+  form = this.fb.group({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
+  constructor(private fb:FormBuilder,private http: HttpClient,private router: Router) {
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
 
    }
