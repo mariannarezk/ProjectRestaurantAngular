@@ -1,0 +1,15 @@
+
+<div class="sidebar">
+    <a [ngClass]="{
+      'active' : activesettings}" (click)="settings();" >Settings</a>
+    <a [ngClass]="{
+      'active' : activeallrestos}" (click)="allrestos();">All restaurants</a>
+    <a [ngClass]="{
+      'active' : activerequests}" (click)="restosrequests();">Restaurant requests</a>
+    <!-- <a [ngClass]="{
+      'active' : active4}" (click)="payments();">Payments</a> -->
+</div>
+
+<div class="content" *ngIf="activesettings">
+    <app-settings></app-settings>
+</div>

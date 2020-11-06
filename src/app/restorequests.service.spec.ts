@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RestobranchService } from './restobranch.service';
+import { RestorequestsService } from './restorequests.service';
 
-describe('RestobranchService', () => {
-  let service: RestobranchService;
+describe('RestorequestsService', () => {
+  let service: RestorequestsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RestobranchService);
+    service = TestBed.inject(RestorequestsService);
   });
 
   it('should be created', () => {

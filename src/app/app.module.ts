@@ -47,10 +47,27 @@ import { CollectionaddonsComponent } from './collectionaddons/collectionaddons.c
 import { HomemanagerComponent } from './homemanager/homemanager.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DataTablesModule} from 'angular-datatables';
-import { SettingsComponent } from './settings/settings.component';
 //import {ReactiveFormsModule} from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ToastrModule } from 'ngx-toastr';
 
+import { UploadComponent } from './upload/upload.component';
+import { Upload2Component } from './upload2/upload2.component';
+import { RestoinfosComponent } from './restoinfos/restoinfos.component';
+import { RestorequestsComponent } from './restorequests/restorequests.component';
+import { SettingsComponent } from './settings/settings.component';
+import { SuperadminhomeComponent } from './superadminhome/superadminhome.component';
+import { ScrollbarComponent } from './scrollbar/scrollbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,14 +107,25 @@ import { NgSelectModule } from '@ng-select/ng-select';
     LoginComponent,
     CollectionaddonsComponent,
     HomemanagerComponent,
-    SettingsComponent
-    
+    UploadComponent,
+    Upload2Component,
+    RestoinfosComponent,
+    RestorequestsComponent,
+    SettingsComponent,
+    SuperadminhomeComponent,
+    ScrollbarComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
+    TooltipModule.forRoot(),
+    PerfectScrollbarModule,
+    BsDropdownModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
     NgSelectModule,
     AppRoutingModule,
     RouterModule.forRoot([
@@ -124,8 +152,14 @@ import { NgSelectModule } from '@ng-select/ng-select';
       { path: 'clientinterface', component: ClientinterfaceComponent },
       { path: 'register', component: RegisterEmployeeComponent },
      { path: 'login', component: LoginComponent },
-     {path:'settings',component:SettingsComponent},
+     { path: 'upload', component: UploadComponent },
+      { path: 'upload2', component: Upload2Component },
+      { path: 'homesa', component: SuperadminhomeComponent },
+      { path: 'restoinfos/:managerid', component: RestoinfosComponent },
+      { path: 'restorequests', component: RestorequestsComponent },
+      { path: 'settings', component: SettingsComponent },
      {path:'registeremployee',component:RegisterEmployeeComponent},
+     {path:'sidebar',component:SidebarComponent},
      
   // {path:'home',component:HomeComponent, canActivate:[AuthGuard]}
       {path:'home',component:HomeComponent},
@@ -135,7 +169,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     BrowserAnimationsModule,
     DataTablesModule
   ],
-  providers: [],
+  providers: [ {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

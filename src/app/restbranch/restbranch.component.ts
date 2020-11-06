@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 
-import {RestobranchService} from '../restobranch.service';
+import {RestbranchService} from '../restbranch.service';
 
 @Component({
   selector: 'app-restbranch',
@@ -19,7 +19,7 @@ export class RestbranchComponent implements OnInit {
   public displayInitial = true;
   public branchname: string = ''; public branchlocation: string = ''; public branchphonenumber: any; branchnotes:string='';
 
-  constructor(private restobranchService: RestobranchService,private dataService: DataService, private _Activatedroute: ActivatedRoute) {
+  constructor(private restobranchService: RestbranchService,private dataService: DataService, private _Activatedroute: ActivatedRoute) {
    
     this.restid = parseInt(this._Activatedroute.snapshot.paramMap.get("restid"));
     this.showbranches();

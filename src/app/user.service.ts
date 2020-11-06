@@ -8,7 +8,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   getUserProfile() {
-    var tokenheaders= new HttpHeaders({'Authorization':'Bearer' + localStorage.getItem('token')});
-    return this.http.get('https://localhost:44309/api/UserProfile/GetUserProfile');
+    var tokenheaders= new HttpHeaders({'Authorization':'Bearer ' + localStorage.getItem('token')});
+    console.log("tokenheaders="+tokenheaders);
+    return this.http.get('https://localhost:44369/api/UserProfile',{headers:tokenheaders});
   }
 }

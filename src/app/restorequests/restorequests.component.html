@@ -1,0 +1,87 @@
+<p>restorequests works!</p>
+   
+<div *ngIf="displayInitial">
+    
+    <table class="table">
+  
+  
+      <tr *ngFor="let resto of restos">
+        
+        <td>
+          <button type="button" class="btn btn-primary">Accept</button>
+          
+          </td>
+      </tr>
+    </table>
+  </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <table>
+  <head>
+      <th>
+        Restaurant name
+      </th>
+      <!-- <th>
+        Restaurant location
+      </th> -->
+      <th>
+        Restaurant Phone Number
+      </th>
+      <th>
+        Manager e-mail
+      </th>
+      <th>
+
+      </th>
+  </head>
+  <body>
+
+  
+      <tr *ngFor="let resto of restos">
+        
+            <!-- <td><img [src]="createImgPath(zone.zoneImage)" alt="" style="width:60px; height:60px;"></td> -->
+        
+        <td>
+          {{ resto.restaurantName }}
+        </td>
+        <!-- <td>
+          {{resto.restaurantlocation}}
+        </td> -->
+        <td>
+          {{resto.restPhoneNumber}}
+        </td>
+        <td>
+            {{resto.manageremail}}
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="accept(resto.restaurantId);">Accept request</button>
+          &nbsp;
+          <button type="button" class="btn btn-primary" (click)="delete(resto.restaurantId);">Delete request</button>
+          &nbsp;
+        </td>
+      </tr>
+    </body>
+    </table>

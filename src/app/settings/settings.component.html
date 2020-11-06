@@ -1,1 +1,200 @@
-<p>settings works!</p>
+<div class="sidebar">
+    <a [ngClass]="{
+      'active' : general}" (click)="generalfct();" >General</a>
+    <a [ngClass]="{
+      'active' : active2}" (click)="secandlog();">Security and Login</a>
+    <a [ngClass]="{
+      'active' : modal}" (click)="openaddmanager();" *ngIf="managerdiv">Add new manager</a>
+    <!-- <a [ngClass]="{
+      'active' : active4}" (click)="payments();">Payments</a> -->
+  </div>
+
+
+<!-- 
+<button type="button" class="btn btn-danger" (click)="generalfct();">General </button> &nbsp;
+<button type="button" class="btn btn-danger" (click)="security();"> Security and Login </button> &nbsp;
+<div *ngIf="managerdiv">
+    <br> <button type="button" class="btn btn-danger" (click)="openaddmanager();">Add new manager</button>
+</div> -->
+
+
+
+<div class="content" *ngIf="modal">
+   
+          
+              <h3>Add another manager for your restaurant</h3>
+              <input type="text" class="form-control" [(ngModel)]="manageremail" />
+              &nbsp;
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="addmanager();">Add manager</button>
+              <!-- <button type="button" class="btn btn-outline-primary btn-sm" (click)="closeCreate();">Cancel</button> -->
+      
+</div>
+
+<div class="content" *ngIf="securityandlogin">
+    <form name="form" [formGroup]="form">  
+
+    <table class="table">
+        
+        <tr>
+            <div class="flex-container">
+                <th class="flex-item-left"> Change Password </th>
+                <div class="flex-item-right">
+                    <div *ngIf="editpass">
+                        <td> 
+                            <button type="button" class="btn btn-link" (click)="openeditpass();">Edit</button>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </div>
+                    <div *ngIf="inputeditpass">
+                        <tr>
+                            <td>Current</td>
+                            <td>
+                                <div class="form-group required">
+                                <input type="password" class="form-control" formControlName="currentpassword" 
+                                [ngClass]="{'is-invalid': form.get('currentpassword').touched && form.get('currentpassword').invalid}"
+                                [(ngModel)]="currentpassword" />
+                                <div class="invalid-feedback"> Current Password is required</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <div formGroupName="Passwords">
+                            <tr>
+        
+                                <td>New</td>
+                                <td>
+                                    <div class="form-group">
+                                    <input type="password" class="form-control" formControlName="newpassword" [(ngModel)]="newpassword" 
+                                    [ngClass]="{'is-invalid': form.get('Passwords.newpassword').touched && form.get('Passwords.newpassword').invalid}" 
+                                    />
+                                    <div class="invalid-feedback"> New Password is required</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Retype new</td>
+                                <td>
+                                    <div class="form-group">
+                                    <input type="password" class="form-control" formControlName="confirmnewpassword" [(ngModel)]="confirmnewpassword"
+                                    [ngClass]="{'is-invalid': form.get('Passwords.confirmnewpassword').touched && form.get('Passwords.confirmnewpassword').errors?.required}" 
+                                    />
+                                    <div class="invalid-feedback"> Confirm new password is required </div> 
+                                    </div>
+                                    <div class="text-danger" *ngIf="form.get('Passwords.confirmnewpassword').errors?.passwordMismatch"> 
+                                
+                                    <label>
+                                        Passwords doesn't match 
+                                    </label>
+                                
+                             </div>
+                                </td>
+                            </tr>
+                            
+                        </div>
+                        <tr> 
+                            <!-- <td width="15%"> 
+                              <button type="button" class="btn btn-outline-primary btn-sm" style="margin-left: 0%;" (click)="saveeditpass();">Save</button>
+                            </td> -->
+                            <td>
+                            <div class="form-group" *ngIf="form.get('Passwords.confirmnewpassword').errors?.passwordMismatch || 
+                form.get('Passwords.newpassword').invalid || form.get('Passwords.confirmnewpassword').invalid ||
+                form.get('currentpassword').invalid ; else enablee
+                "> 
+                <button type="button" class="btn btn-outline-primary btn-sm" style="margin-left: 0%;" disabled>Save</button>
+            </div>
+        
+              <ng-template #enablee>
+                <div class="form-group">
+                    <button type="button" class="btn btn-outline-primary btn-sm" style="margin-left: 0%;" (click)="saveeditpass();">Save</button>
+                </div>
+              </ng-template>
+              </td>
+                            <td width="15%"><button type="button" class="btn btn-outline-primary btn-sm" (click)="canceleditpass();">Cancel</button>
+                            </td>
+                        </tr>
+                        
+                    </div>
+                </div>
+              </div>
+            
+            
+        </tr>
+        
+            
+        
+        
+        
+    </table>
+    </form>
+</div>
+
+<div class="content" *ngIf="general" >
+    <div class="flex-container">
+        <div class="flex-item-left"> 
+            <b>Name</b> 
+        </div>            
+        <div *ngIf="editname" class="flex-item-middle"> 
+            <label>{{fullname}}</label>
+                <button type="button" class="btn btn-link" (click)="openeditname();">
+                    Edit
+                </button>
+        </div>
+        <div *ngIf="inputeditname" class="flex-item-right1">
+            <form name="formname" [formGroup]="formname">  
+            <div class="form-group required">
+                <center>
+                    <input type="text" class="form-control" formControlName="fullName"  [(ngModel)]="fullname" 
+                    [ngClass]="{'is-invalid': formname.get('fullName').touched && formname.get('fullName').invalid}"
+                    />
+                    <div class="invalid-feedback"> 
+                        Name is required
+                    </div>
+                </center>
+            </div>
+            <div class="flex-item-right2">
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="saveeditname();">
+                    Save
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="canceleditname();">
+                    Cancel
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="flex-container">
+        <div class="flex-item-left"> 
+            <b>Email</b> 
+        </div>            
+        <div *ngIf="editemail" class="flex-item-middle"> {{email}}
+                <button type="button" class="btn btn-link" (click)="openeditemail();">
+                    Edit
+                </button>
+        </div>
+        <div *ngIf="inputeditemail" class="flex-item-right1">
+            <form name="formemail" [formGroup]="formemail">  
+            <div class="form-group required">
+                <center>
+                    <input type="text" class="form-control" formControlName="email"  [(ngModel)]="email" 
+                    [ngClass]="{'is-invalid': formemail.get('email').touched && formemail.get('email').invalid}"
+                    />
+                    <div class="invalid-feedback"> 
+                        Email is required
+                    </div>
+                </center>
+            </div>
+            <div class="flex-item-right2">
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="saveeditemail();">
+                    Save
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="canceleditemail();">
+                    Cancel
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+    
+</div>        

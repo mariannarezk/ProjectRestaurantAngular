@@ -1,34 +1,81 @@
+Register employees
 <div class="row">
     <div class="col-md-4">   
-        <button id="waiter" (click)="swapW()">Waiter</button>
-        <button id="chef" (click)="swapC()">Chef</button>  
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Email address" [(ngModel)]="email" />
-        </div>       
-        <!-- <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" [(ngModel)]="username" />
-        </div>  -->
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Full name" [(ngModel)]="fullname" />
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" />
-        </div>
-        <div *ngIf="Cswap">
-        <div class="form-group">
-            <!-- <input type="hidden" class="form-control" [(ng-init)]="Chef" [(ngModel)]="role" /> -->
-            Chef
-        </div>
-        </div>
-
-        <div *ngIf="Wswap">
-            <div class="form-group">
-                <!-- <input type="hidden" class="form-control" [(ng-init)]="Waiter" [(ngModel)]="role" /> -->
-                Waiter
+        <form name="form" [formGroup]="form">  
+            <button id="waiter" (click)="swapW()">Waiter</button>
+            <button id="chef" (click)="swapC()">Chef</button>  
+            <div class="form-group required">
+                <input type="text" class="form-control" formControlName="email" placeholder="Email address" [(ngModel)]="email"
+                [ngClass]="{'is-invalid': form.get('email').touched && form.get('email').invalid}" 
+                />
+                <div class="invalid-feedback"> Email is required</div>
+              </div>        
+              
+            <!-- <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" [(ngModel)]="username" />
+            </div>  -->
+            <div class="form-group required">
+    
+                <input type="text" class="form-control" formControlName="fullName" [(ngModel)]="fullname"
+                [ngClass]="{'is-invalid': form.get('fullName').touched && form.get('fullName').invalid}" 
+                placeholder="Full Name"/>
+                <div class="invalid-feedback"> Full Name is required</div>
             </div>
-       </div>
+            <div formGroupName="Passwords">
+                <div class="form-group">
+                  
+                  <input type="password" class="form-control" formControlName="password" [(ngModel)]="password"
+                  [ngClass]="{'is-invalid': form.get('Passwords.password').touched && form.get('Passwords.password').invalid}" 
+                  placeholder="Password" />
+                  <div class="invalid-feedback"> Password is required</div>
+                </div>
+            
+                <div class="form-group">
+                  
+                  <input type="password" class="form-control" formControlName="confirmpassword" 
+                   [ngClass]="{'is-invalid': form.get('Passwords.confirmpassword').touched && form.get('Passwords.confirmpassword').errors?.required}" 
+                  placeholder="Confirm Password" />
+                  <div class="invalid-feedback"> Confirm password is required </div> 
+                  <!-- <div class="text-danger" 
+                  *ngIf="form.get('Passwords.confirmpassword').touched && form.get('Passwords.confirmpassword').errors?.required"> 
+                  
+                </div> -->
+                  
+                     <div class="text-danger" *ngIf="form.get('Passwords.confirmpassword').errors?.passwordMismatch"> 
+                        <label>Passwords doesn't match </label>
+                     </div>
+                </div>
+            </div>
+            <div *ngIf="Cswap">
+            <div class="form-group">
+                <!-- <input type="hidden" class="form-control" [(ng-init)]="Chef" [(ngModel)]="role" /> -->
+                Chef
+            </div>
+            </div>
 
+            <div *ngIf="Wswap">
+                <div class="form-group">
+                    <!-- <input type="hidden" class="form-control" [(ng-init)]="Waiter" [(ngModel)]="role" /> -->
+                    Waiter
+                </div>
+            </div>
+
+            <!-- <div class="form-group">
+                <button type="button" class="btn btn-danger" (click)="createUser();">Register</button>
+            </div> -->
+            <div class="form-group" *ngIf="form.get('Passwords.confirmpassword').errors?.passwordMismatch || 
+        form.get('Passwords.password').invalid || form.get('Passwords.confirmpassword').invalid ||
+        form.get('email').invalid || form.get('fullName').touched && form.get('fullName').invalid ; else enablee
+        "> 
+        <button type="button" class="btn btn-danger" disabled>Register</button>
+      </div>
+
+      <ng-template #enablee>
         <div class="form-group">
-            <button type="button" class="btn btn-danger" (click)="createUser();">Register</button>
-          </div>
+          <button type="button" class="btn btn-danger"(click)="createUser();" >Register</button>
+        </div>
+      </ng-template>
+        </form>
+    </div>
 </div>
+

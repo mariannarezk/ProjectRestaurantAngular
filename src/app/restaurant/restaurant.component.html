@@ -1,67 +1,131 @@
-<div *ngIf="showcreate">
-  <H2>Create your own restaurant!</H2>
-  <br />
-  
-  <div class="form-group">
-  <input type="text" class="form-control" placeholder="Name" [(ngModel)]="restaurantname" />
+<H2>Create your own restaurant!</H2>
+<H4>Register manager</H4>
+<br />
+
+<form name="form" [formGroup]="form">
+  <div class="form-group required">
+    
+  <input type="text" class="form-control" formControlName="fullName" [(ngModel)]="fullname"
+  [ngClass]="{'is-invalid': form.get('fullName').touched && form.get('fullName').invalid}" 
+  placeholder="Full Name"/>
+  <div class="invalid-feedback"> Full Name is required</div>
   </div>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Logo" [(ngModel)]="restaurantlogo" />
-  </div>  
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Phone Number" [(ngModel)]="restaurantphone" />
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Notes" [(ngModel)]="restaurantnotes" />
-  </div>
-  <div class="form-group">
-    <button type="button" class="btn btn-primary" (click)="createrest();">Create </button>
-  </div>
-  
-  <br />
-  <br />
-  <div class="form-group">
-    <button type="button" class="btn btn-danger" (click)="BackToAll();">Back To All Restaurants!</button>
-    </div>
-  </div>
-  <div *ngIf="showall">
+  <div class="form-group required">
+    <input type="text" class="form-control" formControlName="email" placeholder="Email address" [(ngModel)]="email"
+    [ngClass]="{'is-invalid': form.get('email').touched && form.get('email').invalid}" 
+    />
+    <div class="invalid-feedback"> Email is required</div>
+  </div> 
+  <div formGroupName="Passwords">
     <div class="form-group">
-      <a class="btn btn-primary" (click)="showCreate();" >Create Restaurant</a>
+      
+      <input type="password" class="form-control" formControlName="password" [(ngModel)]="password"
+      [ngClass]="{'is-invalid': form.get('Passwords.password').touched && form.get('Passwords.password').invalid}" 
+      placeholder="Password" />
+      <div class="invalid-feedback"> Password is required</div>
     </div>
-    <table class="table">
-      <tr bgcolor="#f9f9f9">
-        <th>Restaurant Name</th>
-        <th>Restaurant Logo</th>
-        <th>Restaurant Phone Number</th>
-        <th>Restaurant Notes</th>
-        <th></th>
-      </tr>
-  
-      <tr *ngFor="let r of allrests">
-        <td>
-          {{ r.restaurantName }}
-        </td>
-        <td>
-          {{ r.restaurantLogo }}
-        </td>
-        <td>
-          {{ r.restPhoneNumber }}
-        </td>
-        <td>  
-          {{ r.restNotes }}
-        </td>
-        <td>
-          <a class="btn btn-primary" [routerLink]="['/restbranch',r.restaurantId]" >Go to branches</a>        </td>
-      </tr>
-    </table>
-  
-  
+
+    <div class="form-group">
+      
+      <input type="password" class="form-control" formControlName="confirmpassword" 
+       [ngClass]="{'is-invalid': form.get('Passwords.confirmpassword').touched && form.get('Passwords.confirmpassword').errors?.required}" 
+      placeholder="Confirm Password" />
+      <div class="invalid-feedback"> Confirm password is required </div> 
+      <!-- <div class="text-danger" 
+      *ngIf="form.get('Passwords.confirmpassword').touched && form.get('Passwords.confirmpassword').errors?.required"> 
+      
+    </div> -->
+      
+      <div class="text-danger" 
+      *ngIf="form.get('Passwords.confirmpassword').errors?.passwordMismatch"> 
+        
+      
+        <label>Passwords doesn't match </label>
+      
+    </div>
+
+    <!-- <div class="text-danger" 
+      *ngIf="form.get('Passwords.confirmpassword').touched && form.get('Passwords.confirmpassword').errors?.passwordMismatch; else enable"> 
+      <ng-template #enable>
+      <div class="form-group">
+        <button type="button" class="btn btn-danger" disabled>Create Restaurant!</button>
+      </div>
+    </ng-template>
+      
+    </div> -->
+
+
+
   </div>
 
+<div class="form-group" *ngIf="form.get('Passwords.confirmpassword').errors?.passwordMismatch || 
+form.get('Passwords.password').invalid || form.get('Passwords.confirmpassword').invalid ||
+ form.get('email').invalid || form.get('fullName').touched && form.get('fullName').invalid ; else enablee
+"> 
+        <button type="button" class="btn btn-danger" disabled>Create Restaurant!</button>
+      </div>
+
+      <ng-template #enablee>
+        <div class="form-group">
+          <button type="button" class="btn btn-danger"(click)="createrest();" >Create Restaurant!</button>
+        </div>
+      </ng-template>
 
 
 
 
 
+  
+</div> 
+  <!-- <div class="form-group">
+    <button type="button" class="btn btn-danger" (click)="createrest();">Create Restaurant!</button>
+  </div> -->
+
+</form>
 
 
+
+
+<!-- <div class="form-group">
+<input type="text" class="form-control" placeholder="Full Name" [(ngModel)]="fullname" />
+</div>
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Email address" [(ngModel)]="email" />
+</div>  
+<div class="form-group">
+  <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" />
+</div>
+<div class="form-group">
+  <button type="button" class="btn btn-danger" (click)="createrest();">Create Restaurant!</button>
+</div>
+
+<br />
+<br />
+<div class="form-group">
+    <a class="btn btn-primary" [routerLink]="['/restbranch',1]" (click)="assignrestid(1);">Go to branches</a>
+  </div> -->
+
+
+
+<!-- <table class="table">
+    <tr *ngFor="let resto of restos">
+      <td>
+        {{ resto.estaurantName }}
+      </td>
+      <td>
+        {{ resto.restPhoneNumber }}
+      </td>
+      <td>
+        {{ resto.restNotes }}
+      </td>
+      
+      <td>
+        <button type="button" class="btn btn-primary" (click)="editbranch(branch.branchId,branch.branchName,branch.branchLocation,branch.branchNotes,branch.branchPhoneNumber);">Edit Branch</button>
+        &nbsp;
+
+        <div class="form-group">
+            <a class="btn btn-primary" [routerLink]="['/restbranch',resto.restaurantId]" (click)="assignrestid(restid);">Go to branches</a>
+          </div>
+      </td>
+    </tr>
+  </table> -->

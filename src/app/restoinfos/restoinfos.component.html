@@ -1,0 +1,38 @@
+<H4>Add restaurant infos</H4>
+<br />
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Restaurant Name" [(ngModel)]="restaurantname" />
+</div>
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Phone number" [(ngModel)]="restphonenumber" />
+</div>  
+<app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+
+<div class="form-group">
+  <button type="button" class="btn btn-danger" (click)="createrest();">Create Restaurant!</button>
+</div>
+
+
+
+<!-- <table class="table">
+    <tr *ngFor="let resto of restos">
+      <td>
+        {{ resto.estaurantName }}
+      </td>
+      <td>
+        {{ resto.restPhoneNumber }}
+      </td>
+      <td>
+        {{ resto.restNotes }}
+      </td>
+      
+      <td>
+        <button type="button" class="btn btn-primary" (click)="editbranch(branch.branchId,branch.branchName,branch.branchLocation,branch.branchNotes,branch.branchPhoneNumber);">Edit Branch</button>
+        &nbsp;
+
+        <div class="form-group">
+            <a class="btn btn-primary" [routerLink]="['/restbranch',resto.restaurantId]" (click)="assignrestid(restid);">Go to branches</a>
+          </div>
+      </td>
+    </tr>
+  </table> -->
