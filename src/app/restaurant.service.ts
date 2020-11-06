@@ -10,7 +10,7 @@ export class RestaurantService {
     
    }
    saveRest(restname) {
-    this.http.post<any>('https://localhost:44369/api/restaurant/Create', { RestaurantName: restname }).subscribe(data => { console.log(data); });
+    this.http.post<any>('https://localhost:44309/api/restaurant/Create', { RestaurantName: restname }).subscribe(data => { console.log(data); });
   }
   // getrest(){
   //   this.http.get('https://localhost:44369/api/restaurant/Get');

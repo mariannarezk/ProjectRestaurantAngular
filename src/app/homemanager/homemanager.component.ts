@@ -51,7 +51,8 @@ aredisabled = true;
     }
    }
   showMenus(){
-  this.menusService.getMenus().subscribe(result => {
+    console.log(this.branchid);
+  this.menusService.getMenus(this.branchid).subscribe(result => {
     this.menus = result;
   }), error => console.error(error);
 }
@@ -113,6 +114,7 @@ closeItemCategories(){
   this.showitemscategory=false;
 }
   ngOnInit(): void {
+    this.showMenus();
     this.assignMenu(-1,"Choose Menu : ",null);
     this.showCategories();
   }

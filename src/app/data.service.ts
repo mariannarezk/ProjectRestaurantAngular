@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { ZoneToCreate } from './_interfaces/zoneToCreate.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +12,7 @@ export class DataService {
   //these variables for the page edit ingredient
   public ingredientid; public ingredientname; public ingredientcalories; public ingredientqty;
   //these variables for the page create item
-  public categoryid;
+  public categoryid;public allcategoriesitem;
   //these variables for the page edit item
   transshowedititem=false;itemid; itemname; itemprice; itemdescr; itemcalories; itemsize; itemdiscount; editcategid;edititemmenuid;
   //these variables for the page edit addone
@@ -29,7 +29,16 @@ export class DataService {
   public brestid;
   public branchid; public branchname; public beanchlocation; public branchphonenumber; public branchnotes; public restid;
   public zonename; public zoneid;
+  public nboftables;
+  public zoneenabled;
+  public zoneimage;
   //these variables are transmitted btween the components in the one single page :
   public transmenuid;
+
+
+
+
+  //objet zone
+  public zone: ZoneToCreate;
   constructor() { }
 }

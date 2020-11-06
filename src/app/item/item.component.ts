@@ -3,7 +3,7 @@ import { ItemService } from '../item.service';
 import { DataService } from '../data.service';
 import { EnsembleService } from '../ensemble.service';
 import { ActivatedRoute } from '@angular/router';
-
+import {CategoryService} from '../category.service';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -21,8 +21,8 @@ export class ItemComponent implements OnInit {
   displayobligaddones=false;
   public ensembleitems:any;
   displayensembleitems = false;
-
-  constructor(private ensembleService : EnsembleService,private itemService: ItemService, private dataService: DataService, private _Activatedroute: ActivatedRoute) {
+  public allcategories;
+  constructor(private categoryService:CategoryService,private ensembleService : EnsembleService,private itemService: ItemService, private dataService: DataService, private _Activatedroute: ActivatedRoute) {
    // this.categid = parseInt(this._Activatedroute.snapshot.paramMap.get("categoryid"));
     //this.dataService.enscategid = this.categid;
     //this.showItems();
@@ -77,6 +77,10 @@ this.displaycomposeallergens=false;
 
   showcreate() {
    // this.dataService.categoryid = this.categid;
+   this.categoryService.getCategories(this.menuid).subscribe(result => {
+    this.allcategories = result;
+  }), error => console.error(error);
+  this.dataService.allcategoriesitem = this.allcategories;
     this.displaycreate = true;
   
   }
@@ -139,6 +143,15 @@ this.dataService.edititemmenuid=menuid;
       this.ensembleService.saveEnsembleItem(a.ensembleId,a.itemId,a.ensembleName,a.isChoosed);
      }
      this.closeEnsembleItems();
+  }
+  divshowdetailsensemble=false;
+  showedensid;
+  showmoredetails(ensid){
+this.divshowdetailsensemble=true;
+this.showedensid = ensid;
+  }
+  closedetailsensemble(){
+    this.divshowdetailsensemble=false;
   }
   ngOnInit(): void {
     //this.showItems();

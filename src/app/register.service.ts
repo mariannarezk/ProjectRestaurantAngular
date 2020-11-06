@@ -12,6 +12,6 @@ export class RegisterService {
 
    }
   restaurant() {
-    return this.http.get('https://localhost:44346/api/Register/get/');
+    return this.http.get('https://localhost:44309/api/Register/get/');
   }
 }

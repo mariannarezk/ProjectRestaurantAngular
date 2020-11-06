@@ -11,7 +11,25 @@
     background-color: rgba(0,0,0,0.4);
     border: 1px;
   }
-  
+  #m{
+    display: block;
+    position: relative; 
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    border: 1px;
+  }
+  #mc{
+    width: auto;
+    height: auto;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+  }
   @media only screen and (min-device-width : 50px) and (max-device-width : 600px) {
     .modal-content {
       width: auto;

@@ -10,6 +10,6 @@ export class UserService {
   getUserProfile() {
     var tokenheaders= new HttpHeaders({'Authorization':'Bearer ' + localStorage.getItem('token')});
     console.log("tokenheaders="+tokenheaders);
-    return this.http.get('https://localhost:44369/api/UserProfile',{headers:tokenheaders});
+    return this.http.get('https://localhost:44309/api/UserProfile',{headers:tokenheaders});
   }
 }

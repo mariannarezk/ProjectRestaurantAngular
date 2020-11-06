@@ -134,7 +134,7 @@ export class SettingsComponent implements OnInit {
   getprofileinfos(){
     var managerid=localStorage.getItem('id');
     //console.log(managerid);
-     this.http.get('https://localhost:44369/api/UserProfile/getprofileinfos?managerid='+managerid).subscribe(result => {
+     this.http.get('https://localhost:44309/api/UserProfile/getprofileinfos?managerid='+managerid).subscribe(result => {
          this.reponse=result;
         // console.log(this.reponse.email);
          this.email=this.reponse.email;
@@ -149,7 +149,7 @@ export class SettingsComponent implements OnInit {
   addmanager(){
     console.log("hi");
     console.log(this.manageremail);
-    this.http.post<any>('https://localhost:44369/api/Manager/accept', {
+    this.http.post<any>('https://localhost:44309/api/Manager/accept', {
       RestaurantId: parseInt(localStorage.getItem("restid")),
       Email:this.manageremail, 
       // FullName: this.fullname, 
@@ -167,7 +167,7 @@ this.general=false;
     
 }
 saveeditemail(){
-  this.http.post<any>('https://localhost:44369/api/UserProfile/editemail', {
+  this.http.post<any>('https://localhost:44309/api/UserProfile/editemail', {
         Id:localStorage.getItem('id'),
         Email:this.email, 
         //FullName: this.fullname, 
@@ -190,7 +190,7 @@ saveeditemail(){
 
 saveeditname(){
   
-  this.http.post<any>('https://localhost:44369/api/UserProfile/editfullname', {
+  this.http.post<any>('https://localhost:44309/api/UserProfile/editfullname', {
         Id:localStorage.getItem('id'),
         //Email:this.email, 
         FullName: this.fullname, 
@@ -208,7 +208,7 @@ saveeditname(){
 }
 
 saveeditpass(){
-  this.http.post<any>('https://localhost:44369/api/UserProfile/editpassword', {
+  this.http.post<any>('https://localhost:44309/api/UserProfile/editpassword', {
         Id:localStorage.getItem('id'),
         CurrentPassword: this.currentpassword, 
         PasswordHash: this.password

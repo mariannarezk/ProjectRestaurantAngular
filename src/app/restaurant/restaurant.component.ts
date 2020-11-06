@@ -52,7 +52,7 @@ export class RestaurantComponent implements OnInit {
     //this.currentRest.RestaurantName = this.restname;
     //this.restaurantService.saveRest(this.restname);
     //imgPath: this.response.dbPath;
-    this.http.post<any>('https://localhost:44369/api/ApplicationUser/RegisterR', {
+    this.http.post<any>('https://localhost:44309/api/ApplicationUser/RegisterR', {
         Email:this.email, 
         FullName: this.fullname, 
         Password: this.password,

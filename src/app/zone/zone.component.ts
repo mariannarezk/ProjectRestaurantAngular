@@ -42,7 +42,7 @@ export class ZoneComponent implements OnInit {
       branchid: this.branchid
     }
 
-    this.http.post('https://localhost:44369/api/zones/create', this.zone)
+    this.http.post('https://localhost:44309/api/zones/create', this.zone)
     .subscribe(res => {
       this.getZones();
       this.closeCreate();
@@ -55,10 +55,10 @@ export class ZoneComponent implements OnInit {
   }
 
   public createImgPath = (serverPath: string) => {
-    return `https://localhost:44369/${serverPath}`;
+    return `https://localhost:44309/${serverPath}`;
   }
   private getZones() {
-    this.http.get('https://localhost:44369/api/zones/get/?branchid=' + this.branchid)
+    this.http.get('https://localhost:44309/api/zones/get/?branchid=' + this.branchid)
     .subscribe(res => {
      this.zones = res as Zone[];
       //console.log(this.zones);

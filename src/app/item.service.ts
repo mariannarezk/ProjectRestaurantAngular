@@ -16,12 +16,13 @@ export class ItemService {
     return this.http.get('https://localhost:44309/api/Items/GetItemsMenu/?menuid=' + menuid);
 
   }
-  saveItem(itemname,itemprice,itemdescription,itemcalories,itemsize,itemdiscount,menuid) {
+  saveItem(itemname,itemprice,itemdescription,itemcalories,itemsize,itemdiscount,menuid,categid,itempic) {
     this.http.post<any>('https://localhost:44309/api/Items/Create', {
       ItemName: itemname, ItemPrice: itemprice,
       ItemDescription: itemdescription, ItemCalories: itemcalories,
       ItemSize: itemsize, ItemDiscount: itemdiscount,
-      Menu_Id: menuid
+      Menu_Id: menuid , CategId : categid ,
+      ItemImage : itempic
     }).subscribe(data => { });
 
   }

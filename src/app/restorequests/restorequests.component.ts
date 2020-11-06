@@ -18,7 +18,7 @@ export class RestorequestsComponent implements OnInit {
   }
 showrequests(){
   
-    this.http.get('https://localhost:44369/api/SuperAdmin/')
+    this.http.get('https://localhost:44309/api/SuperAdmin/')
     .subscribe(result => {
       this.restos = result;
       console.log(this.restos);
@@ -26,7 +26,7 @@ showrequests(){
   
 }
 accept(restid){
-  this.http.post('https://localhost:44369/api/SuperAdmin/Accept?restid='+restid,{
+  this.http.post('https://localhost:44309/api/SuperAdmin/Accept?restid='+restid,{
     restid:restid
   }).subscribe(result => {
     
@@ -36,7 +36,7 @@ accept(restid){
 }
 delete(restid){
 
-  this.http.post('https://localhost:44369/api/SuperAdmin/Delete?restid='+restid,{
+  this.http.post('https://localhost:44309/api/SuperAdmin/Delete?restid='+restid,{
     restid:restid
   }).subscribe(result => {
     

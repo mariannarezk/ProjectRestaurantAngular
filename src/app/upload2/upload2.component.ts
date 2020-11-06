@@ -31,7 +31,7 @@ export class Upload2Component implements OnInit {
       imgPath: this.response.dbPath
     }
 
-    this.http.post('https://localhost:44369/api/users', this.user)
+    this.http.post('https://localhost:44309/api/users', this.user)
     .subscribe(res => {
       this.getUsers();
       this.isCreate = false;
@@ -39,7 +39,7 @@ export class Upload2Component implements OnInit {
   }
 
   private getUsers = () => {
-    this.http.get('https://localhost:44369/api/users')
+    this.http.get('https://localhost:44309/api/users')
     .subscribe(res => {
       this.users = res as User[];
     });
@@ -56,6 +56,6 @@ export class Upload2Component implements OnInit {
   }
 
   public createImgPath = (serverPath: string) => {
-    return `https://localhost:44369/${serverPath}`;
+    return `https://localhost:44309/${serverPath}`;
   }
 }

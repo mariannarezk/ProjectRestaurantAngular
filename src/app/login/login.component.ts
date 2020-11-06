@@ -12,6 +12,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  
+
   userDetails;
   public reponse;
   private headers: HttpHeaders;
@@ -37,7 +39,7 @@ export class LoginComponent implements OnInit {
   loginUser(){
     console.log(this.username);
      console.log(this.password); 
-    this.http.post<any>('https://localhost:44369/api/ApplicationUser/Login', {
+    this.http.post<any>('https://localhost:44309/api/ApplicationUser/Login', {
         
         UserName:this.username,  
         Password: this.password,
@@ -65,14 +67,14 @@ export class LoginComponent implements OnInit {
               if(this.userDetails.role=="Manager") {
                 var managerid=localStorage.getItem('id');
                 //console.log("3");
-                this.http.get('https://localhost:44369/api/Manager/RestActive?managerid='+managerid).subscribe(reslt => {
+                this.http.get('https://localhost:44309/api/Manager/RestActive?managerid='+managerid).subscribe(reslt => {
                   this.restactive=reslt;
                   //console.log("rest id = "+this.restactive);
                   if(this.restactive == null) {
                     this.router.navigateByUrl('/restoinfos/'+managerid);
                     //console.log("wosslit");
                   }else{
-                    this.http.get('https://localhost:44369/api/Manager/GetRequest?managerid='+managerid).subscribe(result => {
+                    this.http.get('https://localhost:44309/api/Manager/GetRequest?managerid='+managerid).subscribe(result => {
                     this.reponse=result;
                     localStorage.setItem('restid', this.reponse.restaurantId);
                     //console.log(this.reponse.active);
@@ -81,7 +83,7 @@ export class LoginComponent implements OnInit {
                       console.log("active = 0");
                       this.router.navigateByUrl('/login');
                       
-                      this.toastr.error('The admin ba3ed ma 3emellak accept', 'Login failed', {
+                      this.toastr.error('Pending Request', 'Login failed', {
                         timeOut: 3000});
                      } //wait la yen3amallak accept
                     else if(this.reponse.active == 1) {
@@ -94,7 +96,7 @@ export class LoginComponent implements OnInit {
                       this.router.navigateByUrl('/login');
                       console.log("active = -1");
 
-                      this.toastr.error('The admin 3emellak delete', 'Login failed', {
+                      this.toastr.error('You have been removed', 'Login failed', {
                         timeOut: 3000});
                      } //nrafadit l request
                     });

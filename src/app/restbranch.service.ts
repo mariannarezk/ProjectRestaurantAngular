@@ -8,13 +8,13 @@ export class RestbranchService {
 
   constructor(private http:HttpClient) { }
   gotobranch(restid) {
-    return this.http.get('https://localhost:44369/api/RestBranch/get/?restid='+restid);
+    return this.http.get('https://localhost:44309/api/RestBranch/get/?restid='+restid);
   }
   gotohome(branchid) {
-    return this.http.get('https://localhost:44369/api/HomeManager/get/?branchid=' + branchid);
+    return this.http.get('https://localhost:44309/api/HomeManager/get/?branchid=' + branchid);
   }
   saveBranch(branchname, branchlocation, branchphonenumber,branchnotes, restid) {
-    this.http.post<any>('https://localhost:44369/api/RestBranch/Create', {
+    this.http.post<any>('https://localhost:44309/api/RestBranch/Create', {
       BranchName: branchname, BranchLocation: branchlocation,
       BranchPhoneNumber: branchphonenumber, BranchNotes: branchnotes,
       RestaurantId: restid
@@ -23,7 +23,7 @@ export class RestbranchService {
   }
 
   editBranch(branchid, branchname, branchlocation, branchphonenumber,branchnotes, restid) {
-    this.http.post<any>('https://localhost:44369/api/RestBranch/Edit', {
+    this.http.post<any>('https://localhost:44309/api/RestBranch/Edit', {
       BranchId: branchid, BranchName: branchname, BranchLocation: branchlocation,
       BranchPhoneNumber: branchphonenumber,
       BranchNotes: branchnotes, RestaurantId: restid,

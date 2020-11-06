@@ -41,9 +41,9 @@ export class MenuComponent implements OnInit {
    }
   
   public showMenus() {
-    this.menusService.getMenus().subscribe(result => {
+   /* this.menusService.getMenus().subscribe(result => {
       this.menus = result;
-    }), error => console.error(error);
+    }), error => console.error(error);*/
   }
   public createMenu() {
     this.displaycreate = true;

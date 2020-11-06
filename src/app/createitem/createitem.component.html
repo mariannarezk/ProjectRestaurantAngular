@@ -7,11 +7,26 @@
   
       <th style="text-align: center; color: black; ">
         <h3>Create Item</h3>
-  
+ 
+
       </th>
   
       <tbody>
+        <tr>
+          <td valign="middle" align="center" width="100%">
   
+     Choose Category :       
+<ng-select
+[items]="categories"
+bindLabel="categName"
+required
+
+[(ngModel)]="selectedcategoryid"
+>
+</ng-select>
+
+          </td>
+        </tr>
         <tr>
           <td valign="middle" align="center" width="100%">
   
@@ -43,7 +58,11 @@
             <input type="text" class="form-group" placeholder="Discount" [(ngModel)]="itemdiscount"  />
           </td>
         </tr>
-      
+        <tr>
+          <td align="center">
+            <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+          </td>
+        </tr>
         <tr>
   
           <td align="center">
@@ -55,7 +74,7 @@
           </td>
   
         </tr>
-  
+ 
       </tbody>
   
     </table>

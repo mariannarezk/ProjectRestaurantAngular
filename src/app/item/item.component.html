@@ -12,6 +12,17 @@
   </div></div>
 
 </div>
+<div *ngIf="divshowdetailsensemble">
+  <!--<div class="modal" id="m">
+    <div class="modal-content" id="mc">
+      <span class="close" (click)="closedetailsensemble()">&times;</span>
+        {{showedensid}}
+    </div>
+  </div>
+-->
+
+</div>
+
 <div *ngIf="displayensembleitems">
   <div class="modal">
     <div class="modal-content">
@@ -26,7 +37,8 @@
         </tr>
         <tr *ngFor="let ens of ensembleitems">
           <td>
-            {{ ens.ensembleName }}
+            {{ ens.ensembleName }} 
+             
           </td>
         
             <div *ngIf="ens.isChoosed">
@@ -38,8 +50,12 @@
              
               <input type="checkbox" [(ngModel)]="ens.isChoosed">
             </div>
-          <td>
-            </td>
+            <div>
+              <button class="btn btn-sm" (click)="showmoredetails(ens.ensembleId)">More Details</button>
+            </div>
+             
+
+         
             </tr>
       </table>
       <button type="button" class="btn btn-primary"
@@ -218,7 +234,9 @@ Save
           &nbsp;
           <a class="btn btn-primary"
             (click)="getEnsembleItems(item.itemId,item.menu_Id)">Compose Optional Add On'</a>
-        </td>
+          &nbsp;
+          
+          </td>
       </tr>
     </table>
  
