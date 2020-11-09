@@ -6,6 +6,7 @@ import { UserService } from '../user.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
-  constructor(private fb:FormBuilder,private toastr: ToastrService,private http: HttpClient,private router: Router,private dataservice:DataService,private service: UserService) {
+  constructor(private appcomponent:AppComponent,private fb:FormBuilder,private toastr: ToastrService,private http: HttpClient,private router: Router,private dataservice:DataService,private service: UserService) {
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
 
    }
@@ -59,7 +60,9 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('role', this.userDetails.role);
               localStorage.setItem('fullname', this.userDetails.fullName);
               localStorage.setItem('id', this.userDetails.id);
-              console.log("2");
+              //console.log("2");
+              this.appcomponent.logoutbtn=true;
+              this.appcomponent.loginbtn=false;
               //console.log(this.userDetails.role);
               //console.log("fn= "+this.userDetails.fullname);
               //console.log(this.userDetails.UserName);

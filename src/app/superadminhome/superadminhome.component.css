@@ -1,100 +1,48 @@
-.sidebar {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+body {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
   }
-  
-  .sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
   }
-   
-  .sidebar a.active {
-    background-color: #4CAF50;
-    color: white;
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
   }
-  
-  .sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-  }
-  
-  div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-  }
-  
-  @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
-  }
-  
-  @media screen and (max-width: 400px) {
-    .sidebar a {
-      text-align: center;
-      float: none;
-    }
-  }
- 
-  .dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-  }
-  
-  .dropdown {
-    position: top;
-    display: block;
-    border: none;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-   border: none;
-  
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-   
-    text-decoration: none;
-    display: block;
-  }
-  #btnm
-       {
-         background-color: #ddd;
-         padding: 12px 16px;
-         text-decoration: none;
-         border:none;
-         color:black;
-         text-align:center;
-         display: inline-block;
-         font-size: 16px;
-       }
-       #btnm:hover{
-         background-color: #3e8e41;
-       }
-       .dropdown-content a:hover {background-color: #ddd;}
-       
-       .dropdown:hover .dropdown-content {display: block;}
-       
-       .dropdown:hover .dropbtn {background-color: #3e8e41;}
-      
-      
+}
+.bg-light {
+  background-color: bg-light!important;
+}
+#page-content-wrapper{background-color:#DCDCDC;}

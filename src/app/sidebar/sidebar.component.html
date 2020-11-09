@@ -3,13 +3,46 @@
   <div class="bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading">Therichpost </div>
     <div class="list-group list-group-flush">
-      <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+      
+      <!-- <a [ngClass]="{'active' : activesettings}" 
+        class="list-group-item list-group-item-action bg-light" 
+        (click)="settings();">Settings</a>
       <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
       <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
       <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
       <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-    </div>
+      <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
+      <ng-template ngFor let-navitem [ngForOf]="navItems">
+        <!-- <li *ngIf="!isHasChild(navitem)"
+            [ngClass]="{'nav-title': isTitle(navitem), 
+            'nav-item': !(isTitle(navitem) || isDivider(navitem)), 
+            'nav-divider': isDivider(navitem)}"
+        > -->
+            <span *ngIf="isTitle(navitem)" >{{navitem.name}}</span>
+            <span *ngIf="isDivider(navitem)"></span>
+            <a class="list-group-item list-group-item-action bg-light" 
+            *ngIf="!(isTitle(navitem) || isDivider(navitem))" 
+           
+            (click)="navitem.fctname();"
+              >
+               {{navitem.name}}
+            </a>
+        <!-- </li> -->
+        <!-- <li *ngIf="isHasChild(navitem)" appNavDropdown routerLinkActive="open" class="nav-item nav-dropdown open">
+            <a appNavDropdownToggle class="nav-link nav-dropdown-toggle" role="button"><i class="nav-icon" [ngClass]="navitem.icon"></i> {{navitem.name}}</a>
+            <ul class="nav-dropdown-items">
+                <li *ngFor="let cnavitem of navitem.children">
+                    <a class="list-group-item list-group-item-action bg-light" *ngIf="!(isTitle(cnavitem) || isDivider(cnavitem))" routerLink="{{cnavitem.url}}"
+                       routerLinkActive="active">
+                        <i [ngClass]="cnavitem.icon"></i> {{cnavitem.name}}
+                    </a>
+                </li>
+            </ul>
+        </li> -->
+    </ng-template>
+   
+  </div>
+  
   </div>
   <!-- /#sidebar-wrapper -->
   <!-- Page Content -->
@@ -42,8 +75,9 @@
       </div>
     </nav>
     <div class="container-fluid">
-      <h1 class="mt-4">Simple Sidebar</h1>
-      <p>Add your content</p>
+      <!-- <h1 class="mt-4">Simple Sidebar</h1>
+      <p>Add your content</p> -->
+      <!-- <app-superadminhome></app-superadminhome> -->
       
     </div>
   </div>

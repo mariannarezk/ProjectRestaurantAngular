@@ -57,7 +57,6 @@ import { RestoinfosComponent } from './restoinfos/restoinfos.component';
 import { RestorequestsComponent } from './restorequests/restorequests.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SuperadminhomeComponent } from './superadminhome/superadminhome.component';
-import { ScrollbarComponent } from './scrollbar/scrollbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -65,6 +64,8 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { GeneralComponent } from './general/general.component';
+import { SecurityComponent } from './security/security.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -113,8 +114,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RestorequestsComponent,
     SettingsComponent,
     SuperadminhomeComponent,
-    ScrollbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    GeneralComponent,
+    SecurityComponent
   ],
   imports: [
     BrowserModule,
@@ -169,7 +171,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     DataTablesModule
   ],
-  providers: [ {
+  providers: [ 
+    SuperadminhomeComponent,
+    {
     provide: PERFECT_SCROLLBAR_CONFIG,
     useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
   }],

@@ -1,7 +1,72 @@
 <body>
-    <app-nav-menu></app-nav-menu>
-   
+    <!-- <app-nav-menu></app-nav-menu> -->
+    <div class="d-flex" id="wrapper">
+    <div class="bg-light border-right" id="sidebar-wrapper" *ngIf="sidebar"
+    >
+      <div class="sidebar-heading">Therichpost </div>
+      <div class="list-group list-group-flush" >
+        <ng-template ngFor let-navitem [ngForOf]="navItems">
+         <a class="list-group-item list-group-item-action bg-light"(click)="startfct(navitem.name);" >{{navitem.name}}</a>
+       
+        </ng-template>
+    </div>
+    </div>
+    <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button *ngIf="logoutbtn" class="btn btn-primary" id="menu-toggle">Menu</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <!-- <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li> -->
+            
+            
+            <div *ngIf="loginbtn">
+              
+                <li class="nav-item" [routerLinkActive]="['link-active']">
+                  <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
+                </li>
+            </div>
+            <div *ngIf="logoutbtn">
+            <li class="nav-item"  [routerLinkActive]="['link-active']">
+              <button class="btn btn-link" (click)="onLogout()">Logout</button>
+            </li>
+            </div>
+            <div *ngIf="logoutbtn">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                hi
+              </a>
+              <div  class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+              
+            </li>
+          </div>
+          </ul>
+        </div>
+      </nav>
 <!--    <div class="container">-->
+  <div *ngIf="general">
+    <app-general></app-general>
+  </div>
+  <div *ngIf="securityandlogin">
+    <app-security></app-security>
+  </div>
+  <div *ngIf="requests">
+    <app-restorequests></app-restorequests>
+  </div>
       <router-outlet></router-outlet>
  <!-- </div>-->  
+</div>
+</div>
   </body>

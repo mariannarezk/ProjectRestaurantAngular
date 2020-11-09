@@ -44,6 +44,9 @@ delete(restid){
   });
   window.location.reload();
 }
+public createImgPath = (serverPath: string) => {
+  return `https://localhost:44309/${serverPath}`;
+}
   ngOnInit(): void {
   }
 

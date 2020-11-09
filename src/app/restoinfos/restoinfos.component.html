@@ -6,7 +6,7 @@
 <div class="form-group">
   <input type="text" class="form-control" placeholder="Phone number" [(ngModel)]="restphonenumber" />
 </div>  
-<app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+<app-upload (onUploadFinished)="uploadFinished($event)" (click)="increment();"></app-upload>
 
 <div class="form-group">
   <button type="button" class="btn btn-danger" (click)="createrest();">Create Restaurant!</button>
