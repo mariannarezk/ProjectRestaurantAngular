@@ -18,9 +18,14 @@ export class AppComponent {
   securityandlogin=false;
   requests=false;
   sidebar=false;
+  addmanager=false;
   ismanager=false;
+  isclient=false;
+  iswaiter=false;
+  ischef=false;
   issuperadmin=false;
   role;
+  restprofile=false
   @Input() navItems: Array<any>;
   constructor(public sidebarservice: SidebarService,private router: Router) {
     this.login();
@@ -29,7 +34,9 @@ export class AppComponent {
    if(localStorage.getItem('role')=="Super Admin"){
     this.ismanager=false;
     this.issuperadmin=true;
-
+    this.isclient=false;
+    this.iswaiter=false;
+    this.ischef=false;
      this.navItems=[ 
       {
       name: 'Security'
@@ -45,7 +52,27 @@ export class AppComponent {
    }else if(this.role == "Manager"){
      this.ismanager=true;
      this.issuperadmin=false;
-
+     this.isclient=false;
+     this.iswaiter=false;
+     this.ischef=false;
+   }else if(this.role == "Client"){
+    this.ismanager=false;
+    this.issuperadmin=false;
+    this.isclient=true;
+    this.iswaiter=false;
+    this.ischef=false;
+   }else if(this.role == "Waiter"){
+    this.ismanager=false;
+    this.issuperadmin=false;
+    this.isclient=false;
+    this.iswaiter=true;
+    this.ischef=false;
+   }else if(this.role == "Chef"){
+    this.ismanager=false;
+    this.issuperadmin=false;
+    this.isclient=false;
+    this.iswaiter=false;
+    this.ischef=true;
    }
    }
    
@@ -58,24 +85,50 @@ export class AppComponent {
         this.generalfct();
      }else if(name=="Restaurants requests"){
        this.requestsfct();
+     }else if(name=="Add new manager"){
+       this.addmanagerfct();
+     }else if(name=="Restaurant profile"){
+       this.resoprofilefct();
      }
+   }
+   addmanagerfct(){
+    this.general=false;
+    this.securityandlogin=false;
+    this.requests=false;
+    this.addmanager=true;
+    this.restprofile=false;
+    $("#wrapper").toggleClass("toggled");
+   }
+   resoprofilefct(){
+    this.general=false;
+    this.securityandlogin=false;
+    this.requests=false;
+    this.addmanager=false;
+    this.restprofile=true;
+    $("#wrapper").toggleClass("toggled");
    }
    generalfct(){
     this.general=true;
     this.securityandlogin=false;
     this.requests=false;
+    this.addmanager=false;
+    this.restprofile=false;
     $("#wrapper").toggleClass("toggled");
   }
   securityfct(){
     this.securityandlogin=true;
     this.general=false;
     this.requests=false;
+    this.addmanager=false;
+    this.restprofile=false;
     $("#wrapper").toggleClass("toggled");
   }
   requestsfct(){
     this.securityandlogin=false;
     this.general=false;
     this.requests=true;
+    this.addmanager=false;
+    this.restprofile=false;
     $("#wrapper").toggleClass("toggled");
   }
    onLogout() {
@@ -91,6 +144,8 @@ export class AppComponent {
   this.requests=false;
   this.ismanager=false;
   this.issuperadmin=false;
+  this.restprofile=false;
+  this.addmanager=false;
   }
 
   settings(){

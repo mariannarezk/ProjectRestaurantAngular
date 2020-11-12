@@ -43,13 +43,24 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 hi
               </a>
-              <div  class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Settings</a>
+              <div *ngIf="ismanager" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="settings">Settings</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
-              
+              <div *ngIf="issuperadmin" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+              <div *ngIf="isclient || iswaiter || ischef" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="settings">Settings</a>
+                
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
             </li>
           </div>
           </ul>
@@ -64,6 +75,12 @@
   </div>
   <div *ngIf="requests">
     <app-restorequests></app-restorequests>
+  </div>
+  <div *ngIf="addmanager">
+    <app-addmanager></app-addmanager>
+  </div>
+  <div *ngIf="restprofile">
+    <app-restaurantprofile></app-restaurantprofile>
   </div>
       <router-outlet></router-outlet>
  <!-- </div>-->  

@@ -66,6 +66,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { GeneralComponent } from './general/general.component';
 import { SecurityComponent } from './security/security.component';
+import { AddmanagerComponent } from './addmanager/addmanager.component';
+import { RestaurantprofileComponent } from './restaurantprofile/restaurantprofile.component';
+import { CustomerhomeComponent } from './customerhome/customerhome.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -116,7 +119,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SuperadminhomeComponent,
     SidebarComponent,
     GeneralComponent,
-    SecurityComponent
+    SecurityComponent,
+    AddmanagerComponent,
+    RestaurantprofileComponent,
+    CustomerhomeComponent
   ],
   imports: [
     BrowserModule,
@@ -165,7 +171,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
      
   // {path:'home',component:HomeComponent, canActivate:[AuthGuard]}
       {path:'home',component:HomeComponent},
-      { path: 'optionaladdon/:itemid', component: OptionaladdoneComponent }
+      { path: 'optionaladdon/:itemid', component: OptionaladdoneComponent },
+      { path: 'customerhome', component: CustomerhomeComponent }
 
     ]),
     BrowserAnimationsModule,

@@ -1,5 +1,7 @@
 
-
+.flex-container{
+    display: flex;
+}
 
 
   body {
@@ -11,7 +13,10 @@
 .padding {
     margin-top: 3rem !important
 }
-
+.wrap    { 
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+  } 
 .user-card-full {
     overflow: hidden
 }

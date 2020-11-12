@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from '../_interfaces/user.model';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -27,7 +29,7 @@ export class RegisterComponent implements OnInit {
   },{validator : this.comparePasswords})
   
   });
-  constructor(private fb:FormBuilder,private http: HttpClient) {
+  constructor(private fb:FormBuilder,private http: HttpClient,private router: Router) {
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
 
    }
@@ -46,12 +48,18 @@ export class RegisterComponent implements OnInit {
   }
   createUser()
   { 
-    this.http.post<any>('https://localhost:44369/api/ApplicationUser/RegisterC', {
+    this.http.post<any>('https://localhost:44309/api/ApplicationUser/RegisterC', {
         Email:this.email, 
         FullName: this.fullname, 
         Password: this.password
         //confirm_password: this.confirmpassword
-    }).subscribe(data => { console.log(data) });
+    }).subscribe((data: User) => { console.log(data);
+      localStorage.setItem('role', 'Client');
+      localStorage.setItem('fullname', this.fullname);
+      localStorage.setItem('id', data.id);
+      console.log(data.id);
+      this.router.navigateByUrl('/customerhome');
+    });
 
   }
   

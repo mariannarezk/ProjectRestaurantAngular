@@ -29,6 +29,7 @@ export class SuperadminhomeComponent implements OnInit {
       }
     ];
     this.AppComponent.sidebar=true;
+    this.AppComponent.issuperadmin=true;
    }
   
   ngOnInit(): void {

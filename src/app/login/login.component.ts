@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
+import { CustomerhomeComponent } from '../customerhome/customerhome.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -53,19 +54,23 @@ export class LoginComponent implements OnInit {
         }
         else{
           localStorage.setItem('token', res.token);
-        //console.log("1");
+        console.log("1");
           this.service.getUserProfile().subscribe(
             res => {
               this.userDetails = res;
               localStorage.setItem('role', this.userDetails.role);
               localStorage.setItem('fullname', this.userDetails.fullName);
               localStorage.setItem('id', this.userDetails.id);
-              //console.log("2");
+              console.log("2");
               this.appcomponent.logoutbtn=true;
               this.appcomponent.loginbtn=false;
               //console.log(this.userDetails.role);
               //console.log("fn= "+this.userDetails.fullname);
               //console.log(this.userDetails.UserName);
+              if(this.userDetails.role=="Client"){
+                
+                this.router.navigateByUrl('/customerhome');
+              }
               if(this.userDetails.role=="Super Admin") this.router.navigateByUrl('/homesa');
               if(this.userDetails.role=="Manager") {
                 var managerid=localStorage.getItem('id');
@@ -107,7 +112,7 @@ export class LoginComponent implements OnInit {
                 });
               }
              // if(this.userDetails.role=="Waiter") this.router.navigateByUrl('/restorequests');
-             // if(this.userDetails.role=="Client") this.router.navigateByUrl('/restorequests');
+              
              // if(this.userDetails.role=="Chef") this.router.navigateByUrl('/restorequests');
         
             },

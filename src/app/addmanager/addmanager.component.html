@@ -1,0 +1,37 @@
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-12 col-lg-12">
+                <div class="card user-card-full">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-12">
+                            <div class="card-block">
+                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Add another manager to your restaurant</h6>
+                                <div class="row">
+                                    <div  class="col-sm-6">
+                                        <p  class="m-b-10 f-w-600">Email</p>
+                                    </div>
+                                    <form name="formmanager" [formGroup]="formmanager">                                         
+                                        <div class="form-group required">
+                                        
+                                            <input type="text" class="form-control" formControlName="email" 
+                                            [ngClass]="{'is-invalid': formmanager.get('email').touched && formmanager.get('email').invalid}"
+                                            [(ngModel)]="manageremail" />
+                                            <div class="invalid-feedback"> 
+                                                Email is required
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="flex-item-right2">
+                                            <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light btn-sm" (click)="addmanager();">Add manager</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

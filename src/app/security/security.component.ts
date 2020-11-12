@@ -21,7 +21,7 @@ export class SecurityComponent implements OnInit {
   constructor(private fb:FormBuilder,private http: HttpClient,private toastr: ToastrService) {
     this.getprofileinfos();
    }
-  form = this.fb.group({
+   form = this.fb.group({
     
     currentpassword: new FormControl('', Validators.required),
     Passwords: this.fb.group({
@@ -29,6 +29,7 @@ export class SecurityComponent implements OnInit {
     confirmnewpassword: new FormControl('', Validators.required),
   },{validator : this.comparePasswords})
 });
+  
   ngOnInit(): void {
   }
   getprofileinfos(){

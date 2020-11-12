@@ -1,4 +1,4 @@
-<div class="page-content page-container" id="page-content">
+<!-- <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
             <div class="col-md-12 col-lg-12">
@@ -34,21 +34,46 @@
                                                         Passwords doesn't match 
                                                     </label>
                                                 </div>
+                                                <div formGroupName="Passwords">
+                                                            <div class="form-group" class="flex-item">
+                                                            <input type="password" class="form-control" formControlName="newpassword" [(ngModel)]="newpassword" 
+                                                            [ngClass]="{'is-invalid': form.get('Passwords.newpassword').touched && form.get('Passwords.newpassword').invalid}" 
+                                                            />
+                                                            <div class="invalid-feedback"> New Password is required</div>
+                                                            </div>
+                                                        
+                                                            <div class="form-group" class="flex-item">
+                                                            <input type="password" class="form-control" formControlName="confirmnewpassword" [(ngModel)]="confirmnewpassword"
+                                                            [ngClass]="{'is-invalid': form.get('Passwords.confirmnewpassword').touched && form.get('Passwords.confirmnewpassword').errors?.required}" 
+                                                            />
+                                                            <div class="invalid-feedback"> Confirm new password is required </div> 
+                                                            </div>
+                                                            <div class="text-danger" *ngIf="form.get('Passwords.confirmnewpassword').errors?.passwordMismatch"> 
+                                                        
+                                                            <label>
+                                                                Passwords doesn't match 
+                                                            </label>
+                                                        
+                                                     </div>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </div>
                                             </center>
                                             
                                         </div>
                                         <div class="flex-item-right2">
-                                            <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light btn-sm" (click)="saveeditname();">
+                                            <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light btn-sm" (click)="saveeditpass();">
                                                 Save
                                             </button> &nbsp;
-                                            <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light btn-sm" (click)="canceleditname();">
+                                            <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light btn-sm" (click)="canceleditpass();">
                                                 Cancel
                                             </button>
                                         </div>
                                         </form>
                                     </div>
 
-                                    <button *ngIf="editpass" type="button" class="btn btn-link" (click)="openeditname();">
+                                    <button *ngIf="editpass" type="button" class="btn btn-link" (click)="openeditpass();">
                                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -64,98 +89,93 @@
             </div>
         </div>
     </div>
-</div>
-    <!-- <form name="form" [formGroup]="form">  
+</div> -->
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-12 col-lg-12">
+                <div class="card user-card-full">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"> </div>
+                                <h6 class="f-w-600">Hembo Tingor</h6>
+                                <p>Web Designer</p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-block">
+                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                <div class="row">
+                                    <div  class="col-sm-5">
+                                        <p  class="m-b-10 f-w-600">Password</p>
+                                    </div>
+    <form name="form" [formGroup]="form">  
 
-    <table class="table">
-        
-        <tr>
             <div class="flex-container">
-                <th class="flex-item-left"> Change Password </th>
+                
                 <div class="flex-item-right">
                     <div *ngIf="editpass">
-                        <td> 
+                        
                             <button type="button" class="btn btn-link" (click)="openeditpass();">Edit</button>
-                        </td>
-                        <td>
-                            
-                        </td>
+                        
                     </div>
                     <div *ngIf="inputeditpass">
-                        <tr>
-                            <td>Current</td>
-                            <td>
+                       
                                 <div class="form-group required">
                                 <input type="password" class="form-control" formControlName="currentpassword" 
                                 [ngClass]="{'is-invalid': form.get('currentpassword').touched && form.get('currentpassword').invalid}"
-                                [(ngModel)]="currentpassword" />
+                                [(ngModel)]="currentpassword" placeholder="Current password"/>
                                 <div class="invalid-feedback"> Current Password is required</div>
                                 </div>
-                            </td>
-                        </tr>
+                           
                         <div formGroupName="Passwords">
-                            <tr>
-        
-                                <td>New</td>
-                                <td>
-                                    <div class="form-group">
+                            
+                                    <div class="form-group flex-container">
                                     <input type="password" class="form-control" formControlName="newpassword" [(ngModel)]="newpassword" 
                                     [ngClass]="{'is-invalid': form.get('Passwords.newpassword').touched && form.get('Passwords.newpassword').invalid}" 
-                                    />
+                                    placeholder="new password"/> &nbsp;
                                     <div class="invalid-feedback"> New Password is required</div>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Retype new</td>
-                                <td>
-                                    <div class="form-group">
+                                
+                                    <div class="form-group flex-container">
                                     <input type="password" class="form-control" formControlName="confirmnewpassword" [(ngModel)]="confirmnewpassword"
                                     [ngClass]="{'is-invalid': form.get('Passwords.confirmnewpassword').touched && form.get('Passwords.confirmnewpassword').errors?.required}" 
-                                    />
+                                    placeholder="retype new password"/> &nbsp;
                                     <div class="invalid-feedback"> Confirm new password is required </div> 
-                                    </div>
+                                    </div> &nbsp;
                                     <div class="text-danger" *ngIf="form.get('Passwords.confirmnewpassword').errors?.passwordMismatch"> 
-                                
                                     <label>
                                         Passwords doesn't match 
                                     </label>
-                                
                              </div>
-                                </td>
-                            </tr>
-                            
-                        </div>
-                        <tr> 
-                            
-                            <td>
-                            <div class="form-group" *ngIf="form.get('Passwords.confirmnewpassword').errors?.passwordMismatch || 
+                        </div>          
+                        <div class="flex-container wrap"> 
+                                         
+                            <div class=" flex-item form-group" *ngIf="form.get('Passwords.confirmnewpassword').errors?.passwordMismatch || 
                 form.get('Passwords.newpassword').invalid || form.get('Passwords.confirmnewpassword').invalid ||
                 form.get('currentpassword').invalid ; else enablee
                 "> 
-                <button type="button" class="btn btn-outline-primary btn-sm" style="margin-left: 0%;" disabled>Save</button>
+                <button type="button" class="flex-item btn btn-outline-primary btn-sm" style="margin-left: 0%;" disabled>Save</button>
             </div>
-        
+            &nbsp;
               <ng-template #enablee>
                 <div class="form-group">
-                    <button type="button" class="btn btn-outline-primary btn-sm" style="margin-left: 0%;" (click)="saveeditpass();">Save</button>
+                    <button type="button" class="flex-item btn btn-outline-primary btn-sm" style="margin-left: 0%;" (click)="saveeditpass();">Save</button>
                 </div>
               </ng-template>
-              </td>
-                            <td width="15%"><button type="button" class="btn btn-outline-primary btn-sm" (click)="canceleditpass();">Cancel</button>
-                            </td>
-                        </tr>
-                        
+                            <button type="button" class="flex-item btn btn-outline-primary btn-sm" (click)="canceleditpass();">Cancel</button>
+                        </div>
                     </div>
                 </div>
               </div>
-            
-            
-        </tr>
-        
-            
-        
-        
-        
-    </table>
-    </form> -->
+    </form>
+</div>           
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

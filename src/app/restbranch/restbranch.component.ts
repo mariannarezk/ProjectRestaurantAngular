@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { DataService } from '../data.service';
 
 import {RestbranchService} from '../restbranch.service';
@@ -18,11 +19,15 @@ export class RestbranchComponent implements OnInit {
   public displayedit = false;
   public displayInitial = true;
   public branchname: string = ''; public branchlocation: string = ''; public branchphonenumber: any; branchnotes:string='';
-
-  constructor(private restobranchService: RestbranchService,private dataService: DataService, private _Activatedroute: ActivatedRoute) {
+  
+  constructor(private restobranchService: RestbranchService,
+    private AppComponent:AppComponent,
+    private dataService: DataService, 
+    private _Activatedroute: ActivatedRoute) {
    
     this.restid = parseInt(this._Activatedroute.snapshot.paramMap.get("restid"));
     this.showbranches();
+    this.AppComponent.ismanager=true;
   }
 
   ngOnInit(): void {

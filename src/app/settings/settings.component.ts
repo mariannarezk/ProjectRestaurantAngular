@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-settings',
@@ -13,13 +14,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class SettingsComponent implements OnInit {
   managerdiv;
   modal;
-  general;
   scrty;
   reponse;
+  general=true;
+  securityandlogin=false;
   editemail;editname;inputeditname; inputeditemail;
   editpass=true;inputeditpass=false;
   enablepassword;
-  securityandlogin;
   active1=true;active2=false;active3=false;active4=false;active5=false;
   public email:string;
   public password:any;
@@ -41,22 +42,41 @@ export class SettingsComponent implements OnInit {
     confirmnewpassword: new FormControl('', Validators.required),
   },{validator : this.comparePasswords})
 });
-  constructor(private router: Router, private http: HttpClient,private toastr: ToastrService, private fb:FormBuilder) { 
-    this.general=true;
+constructor(private AppComponent:AppComponent,private router: Router, private http: HttpClient,private toastr: ToastrService, private fb:FormBuilder) { 
     this.scrty=false;
     this.enablepassword=true;
     this.modal=false;
     this.inputeditname=false;
     this.inputeditemail=false;
-    this.securityandlogin=false;
-
+    
+    this.AppComponent.sidebar=true;
     this.getprofileinfos();
     if(localStorage.getItem('role')=="Manager")
     {
-      
+      this.AppComponent.navItems=[ 
+      {
+      name: 'Security'
+      },
+      {
+        name: 'General'
+      },
+      {
+        name: 'Add new manager'
+      },
+      {
+        name: 'Restaurant profile'
+      }
+    ];
       this.managerdiv=true;
-    }else if(localStorage.getItem('role')=="Super Admin"){
-
+    }else if(localStorage.getItem('role')=="Client" || localStorage.getItem('role')=="Waiter" || localStorage.getItem('role')=="Chef"){
+      this.AppComponent.navItems=[ 
+        {
+        name: 'Security'
+        },
+        {
+          name: 'General'
+        }
+      ];
     }else{
       this.managerdiv=false;
     }
@@ -130,6 +150,11 @@ export class SettingsComponent implements OnInit {
     this.inputeditpass=false;
   }
   ngOnInit(): void {
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
   }
   getprofileinfos(){
     var managerid=localStorage.getItem('id');
