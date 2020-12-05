@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { ZoneService } from '../zone.service';
@@ -11,14 +11,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./zone.component.css']
 })
 export class ZoneComponent implements OnInit {
+  @Input() heading: string;
+  @Input() inputs: any[];
+  @Output() event: EventEmitter<string> = new EventEmitter<string>();
   public zoneenabled: any;
   public branchid: any;
   public zonename: any;
   public zoneid: any;
-  public displaycreate = false;
-  public displayedit = false;
-  public displayInitial = true;
-  //public zones: any;
+  public displaycreate = true;
   public numberoftables:any;
   public zoneimage:string;
   public zone: ZoneToCreate;

@@ -12,6 +12,9 @@ export class ZoneService {
    gotozone(branchid) {
     return this.http.get('https://localhost:44309/api/Zones/get/?branchid=' + branchid);
   }
+  getZone(){
+    return this.http.get('https://localhost:44309/api/Zones/getZone/');
+  }
   saveZone(zonename, branchid, zoneimage) {
     this.http.post<any>('https://localhost:44309/api/Zones/Create', {
       ZoneName: zonename, 

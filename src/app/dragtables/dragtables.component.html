@@ -1,0 +1,371 @@
+<div class="container"> 
+ 
+<!-- Sidebar -->
+<div *ngIf="sidebar" 
+  class="w3-sidebar w3-bar-block w3-border-right w3-indigo" 
+  style="right:0; width: 40%;" 
+  id="mySidebar">
+  <button (click)="close()" class="w3-bar-item w3-large w3-hover-blue w3-border-indigo w3-hover-border-blue">Close &times;</button>
+  <!-- <a href="#" class="w3-bar-item w3-button">Link 1</a> -->
+  <button *ngIf="yeszone" class="w3-button w3-block w3-left-align w3-hover-blue w3-border-indigo w3-hover-border-blue" 
+  (click)="myAccFunc()">
+  Add tables <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="demoAcc" class="w3-hide w3-white w3-card w3-hover-blue w3-indigo w3-border-indigo w3-hover-border-blue">
+   <center>
+   <div style="width: 100px;
+                height: 100px;
+                border: solid 1px #ccc;
+                color: rgba(0, 0, 0, 0.87);
+                display: inline-flex;
+                justify-content: center;
+                text-align: center;
+                cursor: pointer;
+                background: #fff;
+                margin: 10px;
+                border-radius: 5%;
+                position: relative;
+                box-sizing: border-box;
+                padding: 10px;
+                transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+                box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                            0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                            0 1px 5px 0 rgba(0, 0, 0, 0.12);"
+                
+                value="Square" (click)="square();"></div>
+    <div style="width: 100px;
+                height: 100px;
+                border: solid 1px #ccc;
+                color: rgba(0, 0, 0, 0.87);
+                display: inline-flex;
+                align-items: center;
+                cursor: pointer;
+                margin: 10px;
+                text-align: center;
+                background: #fff;
+                border-radius: 50%;
+                position: relative;
+                box-sizing: border-box;
+                padding: 10px;
+                transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+                box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                            0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                            0 1px 5px 0 rgba(0, 0, 0, 0.12);"
+                value="Circle" (click)="circle();"></div>
+  </center>
+</div>
+ 
+  <a href="#" *ngIf="yeszone" class="w3-bar-item w3-button">Link 2</a>
+  <a href="#" *ngIf="yeszone" class="w3-bar-item w3-button">Link 3</a>
+</div>
+
+
+<div class="scrollmenu">
+  <div *ngFor="let zone of zones" style="width: auto;">
+    <a href="dragtables/{{branchid}}/{{zone.zoneId}}">{{zone.zoneName}}</a>
+  </div>
+      <a (click)="openaddzone()">+</a>
+
+</div>
+
+<div *ngIf="openzone">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeCreate()">&times;</span>
+      <form>
+      <table class="table table-borderless" width="100%">
+
+        <th style="text-align: center; color: black; ">
+          <h3>Add Zone</h3>
+        </th>
+
+        <tbody>
+
+          <tr>
+            <td valign="middle" align="center" width="100%">
+              <input type="text" class="" placeholder="Zone Name" name="zonename"[(ngModel)]="zonename" />
+            </td>
+          </tr>
+          <tr>
+            <td valign="middle" align="center" width="100%">
+              <input type="number" class="" placeholder="Zone Enabled" name="zoneenabled" [(ngModel)]="zoneenabled" />
+
+            </td>
+          </tr>
+          <tr>
+            <td valign="middle" align="center" width="100%">
+              <input type="number" class="" placeholder="Number of tables" name="numberoftables" [(ngModel)]="numberoftables" />
+
+            </td>
+          </tr>
+          <tr>
+            <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="form-group">
+                <button type="button" class="btn btn-danger" (click)="onCreate();">Add Zone</button>
+              </div>
+            </td>
+
+          </tr>
+        </tbody>
+
+      </table>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+  <button class="" style="float:right;" *ngIf="opt" (click)="open()">options</button>
+
+ 
+
+  <div class="container-box">
+    <div class="draggable-box" *ngFor="let item of items" cdkDrag 
+      (cdkDragEnded)="dragEnd($event, item.number)" 
+      cdkDragBoundary=".container-box" 
+      [cdkDragFreeDragPosition]="item.dragPosition"
+      [ngStyle]="{'height': (item.height+40)+'px', 
+                  'width':(item.width+40)+'px'}" 
+      >
+        
+      <div class="example-box" id="{{item.number}}" (dblclick)="openedit(item.number)"
+      [ngStyle]="{'height': (item.height)+'px', 
+                  'width':(item.width)+'px', 
+                  'border-radius':(item.borderRadius)+'%', 
+                  'background': item.color,
+                  'left' : '20px', 
+                  'top' : '20px'
+                  
+                }">   {{item.description}}
+        <div class="example-handle" cdkDragHandle>
+          <svg width="20px" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+          </svg>
+        </div>
+      </div>
+      <div *ngFor="let itemc of chairsadd">
+        <div class="chair-box" *ngIf=" itemc.number == item.number "
+        id="{{itemc.number}}" 
+        [ngStyle]="{'height': (itemc.height)+'px', 
+                    'width':(itemc.width)+'px', 
+                    'border-radius':(itemc.borderRadius)+'%', 
+                    'background': itemc.color,
+                    'left' : (itemc.x)+'px', 
+                    'top' : (itemc.y)+'px' }" > {{itemc.description}}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="draggable-box" *ngFor="let item of add" cdkDrag 
+      (cdkDragEnded)="dragEnd($event, item.number)" 
+      cdkDragBoundary=".container-box" 
+      [cdkDragFreeDragPosition]="item.dragPosition"
+      [ngStyle]="{'height': (item.height+40)+'px', 
+                  'width':(item.width+40)+'px'}" 
+      >
+        
+      <div class="example-box" id="{{item.number}}" (dblclick)="openedit(item.number)"
+      [ngStyle]="{'height': (item.height)+'px', 
+                  'width':(item.width)+'px', 
+                  'border-radius':(item.borderRadius)+'%', 
+                  'background': item.color,
+                  'left' : '20px', 
+                  'top' : '20px'
+                  
+                }">   {{item.description}}
+        <div class="example-handle" cdkDragHandle>
+          <svg width="20px" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <div *ngFor="let itemc of chairsadd">
+        <div class="chair-box" *ngIf=" itemc.number == item.number "
+        id="{{itemc.number}}" 
+        [ngStyle]="{'height': (itemc.height)+'px', 
+                    'width':(itemc.width)+'px', 
+                    'border-radius':(itemc.borderRadius)+'%', 
+                    'background': itemc.color,
+                    'left' : (itemc.x)+'px', 
+                    'top' : (itemc.y)+'px' }" > {{itemc.description}}
+        </div>
+      </div>
+    </div>
+  <!-- <div class="example-box" *ngFor="let item of add" cdkDrag 
+  (cdkDragEnded)="dragEnd($event, item.number)"
+  cdkDragBoundary=".container-box" id="{{item.number}}" 
+  [cdkDragFreeDragPosition]="item.dragPosition"(dblclick)="openedit(item.number)"
+  [ngStyle]="{'height': (item.height)+'px', 'width':(item.width)+'px', 'border-radius':(item.borderRadius)+'%', 'background': item.color}"
+  >
+      {{item.description}}
+      <div class="example-handle" cdkDragHandle>
+          <svg width="20px" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+            <path d="M0 0h24v24H0z" fill="none"></path>
+          </svg>
+      </div>
+  </div> -->
+<!-- chairs -->
+
+
+  
+
+
+
+</div> 
+  <button class="btn btn-primary" *ngIf="opt" style="float: left; position: relative;
+  " value="Save" (click)="save();">Save</button>
+<div *ngIf="edit">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeCreate()">&times;</span>
+
+      
+<div class="dropdown">
+  <button (click)="myFunction()" class="dropbtn">
+  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+      </svg>
+  </button>
+  <div id="myDropdown" class="dropdown-content">
+    <a (click)="openeditchairs()">Edit chairs</a>
+    
+  </div>
+</div>
+
+      <table class="table table-borderless" id="tablesmalldiv">
+        <tbody>
+            <tr>
+                <td align="center" valign="middle" colspan="2">
+                  <button type="button" class="btn btn-secondary" (click)="copyTable()" id="copy" style="font-size:16px;">
+                    Copy
+                  </button>
+                    <button type="button" class="btn btn-secondary" (click)="removeItem()" id="delete" style="font-size:16px; margin-left: 5px;">
+                        Delete
+                    </button>
+                    <br />
+                </td>
+            </tr>
+            <tr style="height:50px;">
+                <td align="center" valign="middle" colspan="2">
+                    Description <input type="text" id="description" [(ngModel)]="description">
+                    <br>Seats number <input type="number" id="description" [(ngModel)]="tableSeatsNumber">
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="middle" colspan="2">
+                  Width <br><input type="number" id="widthtable" [(ngModel)]="widthtable" placeholder="width">
+                  <br>Height <input type="number" id="heighttable" [(ngModel)]="heighttable" placeholder="height">
+
+              </td>
+            </tr>
+            <tr>
+                <td valign="middle" colspan="2" id="tdseatsnb">
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle" colspan="2" id="tddescription">
+                </td>
+            </tr>
+            <tr>
+              <app-color-picker [heading]="'Table Color'" [color]="color" (event)="setColor($event)"></app-color-picker>
+             
+            </tr>
+
+
+
+        </tbody>
+    </table>
+    <center>
+
+        <button type="submit" value="OK" class="btn btn-secondary" id="OK" (click)="adddescription()" style="font-size:16px;">
+            OK
+        </button>
+        <button type="submit" value="OK" class="btn btn-secondary" (click)="closeCreate()" style="margin-left:5px;font-size:16px;">
+          Cancel
+      </button>
+    </center>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="editchairs">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeeditchairs()">&times;</span>
+
+      <table class="table table-borderless" id="tablesmalldiv">
+        <tbody>
+            
+            <tr style="height:50px;">
+                <td align="center" valign="middle" colspan="2">
+                    Seats number <input type="number" id="description" [(ngModel)]="tableSeatsNumber">
+                </td>
+            </tr>
+            <tr align="center">
+              <!-- <img src="C:/Users/Bitar/maro/ProjectRestaurantAngular/table1.jpg"> -->
+              <img [src]="createImgPath(image)"style="width:150px; height:150px;">
+            </tr>
+            <tr align="center">
+              You can choose the number of chairs for every side c1, c2, c3 and c4
+            </tr>
+            <tr>
+              <td>
+                c1 <input type="number" style="width: 40%; " [(ngModel)]="cote1">
+              
+                c2 <input type="number" style="width: 40%; " [(ngModel)]="cote2">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                c3 <input type="number" style="width: 40%; " [(ngModel)]="cote3">
+              
+                c4 <input type="number" style="width: 40%; "[(ngModel)]="cote4">
+              </td>
+            </tr>
+            
+            <tr>
+              <td>
+                <app-color-picker [heading]="'Chairs Color'" [color]="color" (event)="setColor($event)"></app-color-picker>
+             </td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+    <center>
+
+        <button type="submit" value="OK" class="btn btn-secondary" id="OK" (click)="saveeditchairs()" style="font-size:16px;">
+            OK
+        </button>
+        <button type="submit" value="OK" class="btn btn-secondary" (click)="closeeditchairs()" style="margin-left:5px;font-size:16px;">
+          Cancel
+      </button>
+    </center>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  

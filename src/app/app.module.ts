@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { DragDropModule } from "@angular/cdk/drag-drop";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -69,6 +70,14 @@ import { SecurityComponent } from './security/security.component';
 import { AddmanagerComponent } from './addmanager/addmanager.component';
 import { RestaurantprofileComponent } from './restaurantprofile/restaurantprofile.component';
 import { CustomerhomeComponent } from './customerhome/customerhome.component';
+import { DragtablesComponent } from './dragtables/dragtables.component';
+import { ZonecardComponent } from './zonecard/zonecard.component';
+import { WaitertablesComponent } from './waitertables/waitertables.component';
+import { WaitertablesService } from './waitertables.service';
+import { TesttablesComponent } from './testtables/testtables.component';
+import { HorizontalscrollmenuComponent } from './horizontalscrollmenu/horizontalscrollmenu.component';
+import { ColorPickerComponent } from './color-picker/color-picker.component';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -122,7 +131,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SecurityComponent,
     AddmanagerComponent,
     RestaurantprofileComponent,
-    CustomerhomeComponent
+    CustomerhomeComponent,
+    DragtablesComponent,
+    ZonecardComponent,
+    WaitertablesComponent,
+    TesttablesComponent,
+    HorizontalscrollmenuComponent,
+    ColorPickerComponent
   ],
   imports: [
     BrowserModule,
@@ -136,6 +151,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ToastrModule.forRoot(), // ToastrModule added
     NgSelectModule,
     AppRoutingModule,
+    DragDropModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
     
@@ -172,14 +188,20 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   // {path:'home',component:HomeComponent, canActivate:[AuthGuard]}
       {path:'home',component:HomeComponent},
       { path: 'optionaladdon/:itemid', component: OptionaladdoneComponent },
-      { path: 'customerhome', component: CustomerhomeComponent }
-
+      { path: 'customerhome', component: CustomerhomeComponent },
+      {path:'dragtables/:branchid/:zoneid',component:DragtablesComponent},
+      {path:'dragtables/:branchid',component:DragtablesComponent},
+      {path:'zonecard',component:ZonecardComponent},
+      {path:'waitertables',component:WaitertablesComponent},
+      {path:'test',component:TesttablesComponent}
     ]),
     BrowserAnimationsModule,
     DataTablesModule
   ],
   providers: [ 
     SuperadminhomeComponent,
+    ZonecardComponent,
+    WaitertablesService,
     {
     provide: PERFECT_SCROLLBAR_CONFIG,
     useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
